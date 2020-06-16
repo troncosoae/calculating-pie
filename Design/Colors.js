@@ -48,6 +48,7 @@ export const iconColors = {
 export const AppColors = {
     background: Colors.black,
     ansSelect: Colors.darkGray,
+    toast: Colors.middleGray,
     notQuiteWhite: Colors.notQuiteWhite,
     textlight: Colors.realWhite,
     textdark: Colors.realBlack,

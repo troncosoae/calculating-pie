@@ -13,16 +13,21 @@ const Stack = createStackNavigator();
 
 function MainStack() {
   return (
-    <Stack.Navigator initialRouteName="Main">
+    <Stack.Navigator 
+    initialRouteName="Main"
+    screenOptions={{
+        headerTintColor: AppColors.notQuiteWhite,
+        headerStyle: { 
+            backgroundColor: AppColors.navigationHeaderBackground,
+            shadowColor: 'transparent',
+        },
+      }}
+    >
         <Stack.Screen 
             name="Main" 
             component={Tabs} 
             options={{
                 headerTitle: 'Main',
-                headerStyle: {
-                    backgroundColor: AppColors.background,
-                },
-                headerTintColor: AppColors.notQuiteWhite,
                 headerShown: false
             }}
         />
@@ -30,22 +35,14 @@ function MainStack() {
             name="Settings" 
             component={SettingsScreen} 
             options={{ 
-            headerTitle: 'Settings',
-            headerStyle: {
-                backgroundColor: AppColors.background,
-            },
-            headerTintColor: AppColors.notQuiteWhite,
+                headerTitle: 'Settings',
             }}
         />
         <Stack.Screen 
             name="About" 
             component={AboutScreen} 
             options={{ 
-            headerTitle: 'About',
-            headerStyle: {
-                backgroundColor: AppColors.background,
-            },
-            headerTintColor: AppColors.notQuiteWhite,
+                headerTitle: 'About',
             }}
         />
     </Stack.Navigator>
