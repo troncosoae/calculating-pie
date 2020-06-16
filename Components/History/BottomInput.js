@@ -52,7 +52,7 @@ class BottomInput extends React.Component {
                     style={styles.textInput}
                     onChangeText={text => this.setState({ input: text })}
                     value={this.state.input}
-                    placeholder="Input"
+                    placeholder="Advanced Input: "
                     placeholderTextColor={InputTextColors.placeholder}
                     autoCorrect={false}
                     autoCapitalize='none'

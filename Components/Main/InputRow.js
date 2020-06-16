@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 20,
     padding: 5,
-    backgroundColor: AppColors.background,
+    // backgroundColor: AppColors.background,
   },
   textInput: {
     color: TextColors.textInput,
@@ -29,8 +29,8 @@ class InputRow extends React.Component {
     return (
       <TouchableOpacity 
       onPress={this.props.onPress} 
-      style={{...styles.container, opacity: this.props.isAns ? 1:0.7}} 
-      activeOpacity={this.props.isAns ? 1:0.5}
+      style={{...styles.container, backgroundColor: this.props.isAns ? AppColors.ansSelect:AppColors.background}} 
+      activeOpacity={1}
       >
         <Text style={styles.textInput}>{this.props.textInput}</Text>
         <Text style={styles.textResult}> > {this.props.textResult}</Text>

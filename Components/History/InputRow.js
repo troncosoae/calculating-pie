@@ -38,7 +38,7 @@ class InputRow extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{...styles.container, backgroundColor: this.props.isAns ? AppColors.ansSelect:AppColors.background}}>
         <TouchableOpacity style={styles.input} onLongPress={this.onLongPress}>
           <Text style={styles.textInput}>{this.props.textInput}</Text>
         </TouchableOpacity>
@@ -53,6 +53,7 @@ class InputRow extends React.Component {
 InputRow.propTypes = {
   textInput: PropTypes.string,
   textResult: PropTypes.string,
+  isAns: PropTypes.bool,
 }
 
 export default InputRow

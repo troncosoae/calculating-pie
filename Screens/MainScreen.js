@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
     cursorInputStyle: {
         paddingLeft: 25,
         paddingRight: 25,
-        paddingTop: 5,
+        paddingTop: 15,
+        borderTopWidth: 1,
+        borderTopColor: AppColors.rowSeparator,
     },
     cursorInputTextStyle: {
         color: TextColors.textInput,
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
       fontSize: FontSizes.simpleCalculatorResult,
       minHeight: FontSizes.simpleCalculatorResult*2,
       paddingLeft: 30,
+      paddingTop: 10,
     },
 });
 
@@ -105,11 +108,16 @@ class MainScreen extends React.Component {
                 mathInput: [],
                 cursorPosition: 0,
             })
+            // this.flatListRef.scrollToIndex({animated: false, index: 1});
         }
     }
 
     setAnsIndex = (index) => () => {
+        let ansText = text_evaluate("ans=" + this.props.inputsArray[index].textResult, this.props.parser)
         this.props.setAnsIndex(index)
+        this.setState({
+            ansText: ansText,
+        })
     }
 
     getAns = () => {
@@ -129,13 +137,17 @@ class MainScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
+                        ref={(ref) => { this.flatListRef = ref; }}
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}
-                        keyboardShouldPersistTaps="always"
                         data={this.props.inputsArray}
-                        stickyHeaderIndices={[this.props.ansIndex]}
-                        invertStickyHeaders={false}
+                        // stickyHeaderIndices={[this.props.ansIndex]}
+                        invertStickyHeaders={false} 
+                        // getItemLayout={(data, index) => (
+                        //     {length: 60, offset: 60 * index, index}
+                        //   )}
+                        // initialScrollIndex={1}
                     />
                 </View>
                 <CursorInput style={styles.cursorInputStyle} textStyle={styles.cursorInputTextStyle}
@@ -143,6 +155,9 @@ class MainScreen extends React.Component {
                     setCursorPosition={this.setCursorPosition}
                     cursorPosition={this.state.cursorPosition}
                 />
+                <Text style={styles.textResult} numberOfLines={1}>
+                    {this.props.inputsArray.length > 0 ? this.props.inputsArray[this.props.ansIndex].textResult: ""}
+                </Text>
                 <AdvancedButtonMatrix 
                     arrayButtons={this.props.advancedButtons}
                     addCharToInput={this.addCharToInput}

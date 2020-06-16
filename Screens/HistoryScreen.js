@@ -45,14 +45,14 @@ class HistoryScreen extends React.Component {
         }
     }
 
-    renderItem = ({item}) => {
-        if (item.type === Button) {
-            if (this.state.showClear) {
-                return item
-            }
-            return <View style={{height:35}}/>
-        }
-        return <InputRow {...item} />
+    renderItem = ({item, index}) => {
+        // if (item.type === Button) {
+        //     if (this.state.showClear) {
+        //         return item
+        //     }
+        //     return <View style={{height:35}}/>
+        // }
+        return <InputRow {...item} isAns={index === this.props.ansIndex}/>
     }
   
     render() {
@@ -67,7 +67,7 @@ class HistoryScreen extends React.Component {
                         onMomentumScrollEnd={()=>{this.setState({waitingForStop: false})}}
                         keyboardShouldPersistTaps="always"
                         data={[
-                            <Button title="Clear History"/>,
+                            // <Button title="Clear History"/>,
                             ...this.props.inputsArray
                         ]}
                     />
@@ -82,6 +82,7 @@ class HistoryScreen extends React.Component {
 // redux
 const mapStateToProps = state => ({
     inputsArray: state.main.inputsArray,
+    ansIndex: state.main.ansIndex,
 })
 
 const mapDispatchToProps = {
