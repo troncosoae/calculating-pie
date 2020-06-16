@@ -101,7 +101,10 @@ class SettingsScreen extends React.Component {
   state = {
     itemArray: [
       {type: HEADER, params: {text: "Advanced Buttons"}},
-      {type: PRESS_ITEM, params: {text: "New", onPress: ()=>{this.props.newButtonArrayButtons(newButtonsArray)}}},
+      {type: PRESS_ITEM, params: {text: "New", onPress: ()=>{
+        this.props.newButtonArrayButtons(newButtonsArray)
+        Toast.show({text: 'buttons changed', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
+      }}},
       {type: PRESS_ITEM, params: {text: "Default", onPress: ()=>{this.props.newButtonArrayButtons(defaultButtonsArray)}}},
       {type: HEADER, params: {text: "Angle Configuration"}},
       {type: PRESS_ITEM, params: {text: "rad", onPress: () => {
