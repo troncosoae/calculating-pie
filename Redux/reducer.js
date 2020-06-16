@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux'
 import { create, all } from 'mathjs'
 
-import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX } from './mainActions'
+import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE } from './mainActions'
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
+import { change_angle_type } from '../MathBox/mathBox'
 
 
 const math = create(all, {
@@ -23,7 +24,12 @@ const mainReducer = (state = {ansIndex: 0, parser: math.parser(), inputsArray: [
         case SET_ANS_INDEX:
             return {
                 ...state,
-                ansIndex: action.payload
+                ansIndex: action.payload,
+            }
+        case SET_ANGLE_TYPE:
+            return {
+                ...state,
+                parser: change_angle_type(action.payload, state.parser),
             }
         default:
             return state

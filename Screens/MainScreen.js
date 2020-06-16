@@ -8,9 +8,9 @@ import InputRow from '../Components/Main/InputRow';
 import CursorInput from '../Components/Main/CursorInput';
 import BasicButtonsMatrix from '../Components/Main/BasicButtonsMatrix';
 import AdvancedButtonMatrix from '../Components/Main/AdvancedButtonMatrix';
-import { text_evaluate } from '../MathBox/Convertor';
+import { text_evaluate } from '../MathBox/mathBox';
 
-import { addInputToHistory, setAnsIndex } from '../Redux/mainActions'
+import { addInputToHistory, setAnsIndex } from '../Redux/mainActions';
 
 const styles = StyleSheet.create({
     container: {

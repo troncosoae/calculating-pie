@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
-import { text_evaluate } from '../../MathBox/Convertor';
+import { text_evaluate } from '../../MathBox/mathBox';
 import { InputTextColors } from '../../Design/Colors';
 import { FontSizes } from '../../Design/Fonts';
 
