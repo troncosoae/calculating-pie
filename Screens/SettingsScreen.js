@@ -149,16 +149,6 @@ class SettingsScreen extends React.Component {
   }
 }
 
-
-/*
-<View style={styles.container}>
-<List>
-  {this.state.itemArray.map(item => this.renderItem(item))}
-</List>
-
-</View> 
-*/
-
 // redux
 const mapStateToProps = state => ({
 })
