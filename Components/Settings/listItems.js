@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Button, Alert, SectionList, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, List, ListItem, Text, Left, Right, Icon, Picker } from 'native-base';
+import { Container, Header, Content, List, ListItem, Text, Left, Right, Icon, Picker, Switch } from 'native-base';
 
 import { AppColors, TextColors } from '../../Design/Colors';
 import { FontSizes } from '../../Design/Fonts';
@@ -48,5 +48,12 @@ export const renderNavigateItem = ({text, navigate, screenName}) => (
     <ListItem style={styles.item} onPress={()=>{navigate(screenName)}}>
         <Left><Text style={styles.itemText}>{text}</Text></Left>
         <Right><Icon name="arrow-forward" /></Right>
+    </ListItem>
+)
+
+export const renderSwitchItem = ({text, onSwitch}) => (
+    <ListItem style={styles.item}>
+        <Left><Text style={styles.itemText}>{text}</Text></Left>
+        <Right><Switch value={false} /></Right>
     </ListItem>
 )

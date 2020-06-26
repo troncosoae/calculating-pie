@@ -2,12 +2,10 @@ import React from 'react'
 import { View, StyleSheet, Alert, SectionList } from 'react-native';
 import { List, Toast, Content, Text, Button, Container, Root } from 'native-base';
 import { connect } from 'react-redux';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import Constants from 'expo-constants';
 
 import { AppColors, TextColors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
-import { renderHeader, renderPressItem, renderNavigateItem } from '../Components/Settings/listItems';
+import { renderHeader, renderPressItem, renderNavigateItem, renderSwitchItem } from '../Components/Settings/listItems';
 import { newButtonArrayButtons } from '../Redux/buttonsActions';
 import { setAngleType } from '../Redux/mainActions';
 import { forEach } from 'mathjs';
@@ -94,6 +92,7 @@ const defaultButtonsArray = [
 const HEADER = "header"
 const PRESS_ITEM = "pressItem"
 const NAVIGATE_ITEM = "navigateItem"
+const SWITCH_ITEM = "switchItem"
 
 
 class SettingsScreen extends React.Component {
@@ -106,6 +105,8 @@ class SettingsScreen extends React.Component {
         Toast.show({text: 'buttons changed', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
       }}},
       {type: PRESS_ITEM, params: {text: "Default", onPress: ()=>{this.props.newButtonArrayButtons(defaultButtonsArray)}}},
+      {type: SWITCH_ITEM, params: {text: "switch", onSwitch: {}}},
+      {type: NAVIGATE_ITEM, params: {text: "Advanced Button Select", navigate: this.props.navigation.navigate, screenName: "AdvancedButtonsSelect"}},
       {type: HEADER, params: {text: "Angle Configuration"}},
       {type: PRESS_ITEM, params: {text: "rad", onPress: () => {
         this.props.setAngleType("rad")
@@ -130,6 +131,8 @@ class SettingsScreen extends React.Component {
         return renderHeader({text: item.params.text})
       case PRESS_ITEM: 
         return renderPressItem({text: item.params.text, onPress: item.params.onPress})
+      case SWITCH_ITEM: 
+        return renderSwitchItem({text: item.params.text, onSwitch: {}})
       case NAVIGATE_ITEM: 
         return renderNavigateItem({text: item.params.text, navigate: item.params.navigate, screenName: item.params.screenName})
       default: 

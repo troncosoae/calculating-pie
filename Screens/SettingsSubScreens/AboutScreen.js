@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, Button, Alert, Text } from 'react-native';
 
-import { AppColors } from '../Design/Colors';
-import { FontSizes } from '../Design/Fonts'
+import { AppColors } from '../../Design/Colors';
+import { FontSizes } from '../../Design/Fonts'
 
 const styles = StyleSheet.create({
     container: {

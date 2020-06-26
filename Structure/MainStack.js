@@ -7,7 +7,8 @@ import TabNavigatorHeader from './TabNavigatorHeader';
 import HistoryScreen from '../Screens/HistoryScreen'
 import MainScreen from '../Screens/MainScreen'
 import SettingsScreen from '../Screens/SettingsScreen';
-import AboutScreen from '../Screens/AboutScreen';
+import AboutScreen from '../Screens/SettingsSubScreens/AboutScreen';
+import AdvancedButtonsSelectScreen from '../Screens/SettingsSubScreens/AdvancedButtonsSelectScreen';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,13 @@ function MainStack() {
             component={AboutScreen} 
             options={{ 
                 headerTitle: 'About',
+            }}
+        />
+        <Stack.Screen 
+            name="AdvancedButtonsSelect" 
+            component={AdvancedButtonsSelectScreen} 
+            options={{ 
+                headerTitle: 'Advanced Buttons Select',
             }}
         />
     </Stack.Navigator>
