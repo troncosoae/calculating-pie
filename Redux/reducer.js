@@ -3,6 +3,7 @@ import { create, all } from 'mathjs'
 
 import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE } from './mainActions'
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
+import { SET_SETTINGS_ANGLE } from './settingsActions'
 import { change_angle_type } from '../MathBox/mathBox'
 
 
@@ -38,9 +39,9 @@ const mainReducer = (state = {ansIndex: 0, parser: math.parser(), inputsArray: [
 
 
 const defaultButtonsArray = [
-    ['sqrt', 'square', 'pi', 'e', 'log10'],
-    ['openP', 'closeP', 'pwr', 'log', 'comma'],
-    ['cos', 'sin', 'tan', 'shift']
+    ['log', 'log10', 'pi', 'e', 'sqrt'],
+    ['square', 'pwr', 'cos', 'sin', 'tan'],
+    ['openP', 'closeP', 'comma', 'shift']
 ]
 
 const buttonsReducer = (state = {buttonsArray: defaultButtonsArray}, action) => {
@@ -55,9 +56,22 @@ const buttonsReducer = (state = {buttonsArray: defaultButtonsArray}, action) => 
     }
 }
 
+const settingsReducer = (state = {angleType:'rad'}, action) => {
+    switch (action.type) {
+        case SET_SETTINGS_ANGLE: 
+            return {
+                ...state,
+                angleType: action.payload
+            }
+        default:
+            return state;
+    }
+}
+
 const reducer = combineReducers({
     main: mainReducer,
     buttons: buttonsReducer,
+    settings: settingsReducer,
 })
 
 export default reducer

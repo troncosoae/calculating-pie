@@ -1,7 +1,8 @@
 import React from 'react'
-import { View, StyleSheet, Button, Alert, SectionList, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, List, ListItem, Text, Left, Right, Icon, Picker, Switch } from 'native-base';
+import { View, StyleSheet, Button, Alert, SectionList, TouchableOpacity, Switch } from 'react-native';
+import { Container, Header, Content, List, ListItem, Text, Left, Right, Icon, Picker, Radio } from 'native-base';
 
+import { TextModifier } from '../../Components/Main/TextModifier';
 import { AppColors, TextColors } from '../../Design/Colors';
 import { FontSizes } from '../../Design/Fonts';
 
@@ -44,6 +45,13 @@ export const renderPressItem = ({text, onPress}) => (
     </ListItem>
 )
 
+export const renderPressTickItem = ({text, onPress, isActive}) => (
+    <ListItem style={styles.item} onPress={onPress}>
+        <Left><Text style={styles.itemText}>{text}</Text></Left>
+        <Right><Radio selectedColor={AppColors.activeTintColor} selected={isActive()} /></Right>
+    </ListItem>
+)
+
 export const renderNavigateItem = ({text, navigate, screenName}) => (
     <ListItem style={styles.item} onPress={()=>{navigate(screenName)}}>
         <Left><Text style={styles.itemText}>{text}</Text></Left>
@@ -51,9 +59,12 @@ export const renderNavigateItem = ({text, navigate, screenName}) => (
     </ListItem>
 )
 
-export const renderSwitchItem = ({text, onSwitch}) => (
+export const renderSwitchItem = ({text, switchStatus, onValueChange}) => (
     <ListItem style={styles.item}>
         <Left><Text style={styles.itemText}>{text}</Text></Left>
-        <Right><Switch value={false} /></Right>
+        <Right>
+            <Switch value={switchStatus} onValueChange={onValueChange}
+            thumbColor={AppColors.switchThumb} ios_backgroundColor={AppColors.switchTrackOff} trackColor={{false: AppColors.switchTrackOff, true: AppColors.switchTrackOn}} />
+        </Right>
     </ListItem>
 )

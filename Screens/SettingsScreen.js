@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, StyleSheet, Alert, SectionList } from 'react-native';
+import { View, StyleSheet, Alert, SectionList, ScrollView } from 'react-native';
 import { List, Toast, Content, Text, Button, Container, Root } from 'native-base';
 import { connect } from 'react-redux';
 
 import { AppColors, TextColors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
-import { renderHeader, renderPressItem, renderNavigateItem, renderSwitchItem } from '../Components/Settings/listItems';
+import { renderHeader, renderPressItem, renderNavigateItem, renderSwitchItem, renderPressTickItem } from '../Components/Settings/listItems';
 import { newButtonArrayButtons } from '../Redux/buttonsActions';
 import { setAngleType } from '../Redux/mainActions';
+import { setSettingsAngle } from '../Redux/settingsActions';
 import { forEach } from 'mathjs';
 
 const styles = StyleSheet.create({
@@ -37,60 +38,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const newButtonsArray = [
-  ['sqrt', 'square', 'pi', 'e'],
-  ['openP', 'closeP', 'comma'],
-  ['cos', 'sin', 'tan', 'shift'],
-]
-
-const defaultButtonsArray = [
-  ['sqrt', 'square', 'pi', 'e', 'log10'],
-  ['openP', 'closeP', 'pwr', 'log', 'comma'],
-  ['cos', 'sin', 'tan', 'shift']
-]
-
-
-
-// state = {
-//   data: [
-//     {
-//       title: "buttons",
-//       data: [
-//         {text: "new", onPress: ()=> {
-//           this.props.newButtonArrayButtons(newButtonsArray)
-//         }}, 
-//         {text: "default", onPress: ()=> {
-//           this.props.newButtonArrayButtons(defaultButtonsArray)
-//         }}, 
-//       ]
-//     },
-//     {
-//       title: "angles",
-//       data: [
-//         {text: "deg", onPress: ()=> {
-//           this.props.setAngleType("deg")
-//         }}, 
-//         {text: "grad", onPress: ()=> {
-//           this.props.setAngleType("grad")
-//         }}, 
-//         {text: "rad", onPress: ()=> {
-//           this.props.setAngleType("rad")
-//         }}, 
-//       ]
-//     },
-//     {
-//       title: "about",
-//       data: [
-//         {text: "about", onPress: ()=> {
-//           this.props.navigation.navigate("About")
-//         }}, 
-//       ]
-//     },
-//   ]
-// }
-
 const HEADER = "header"
 const PRESS_ITEM = "pressItem"
+const PRESS_TICK_ITEM = "pressTickItem"
 const NAVIGATE_ITEM = "navigateItem"
 const SWITCH_ITEM = "switchItem"
 
@@ -98,67 +48,72 @@ const SWITCH_ITEM = "switchItem"
 class SettingsScreen extends React.Component {
 
   state = {
+    angleType: 'rad',
     itemArray: [
       {type: HEADER, params: {text: "Advanced Buttons"}},
-      {type: PRESS_ITEM, params: {text: "New", onPress: ()=>{
-        this.props.newButtonArrayButtons(newButtonsArray)
-        Toast.show({text: 'buttons changed', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
-      }}},
-      {type: PRESS_ITEM, params: {text: "Default", onPress: ()=>{this.props.newButtonArrayButtons(defaultButtonsArray)}}},
-      {type: SWITCH_ITEM, params: {text: "switch", onSwitch: {}}},
       {type: NAVIGATE_ITEM, params: {text: "Advanced Button Select", navigate: this.props.navigation.navigate, screenName: "AdvancedButtonsSelect"}},
       {type: HEADER, params: {text: "Angle Configuration"}},
-      {type: PRESS_ITEM, params: {text: "rad", onPress: () => {
-        this.props.setAngleType("rad")
-        Toast.show({text: 'angles: rad', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
+      {type: PRESS_TICK_ITEM, params: {text: "rad", isActive:() => (this.props.angleType === 'rad'), onPress: () => {
+        this.setAngleType("rad")
       }}},
-      {type: PRESS_ITEM, params: {text: "deg", onPress: ()=>{
-        this.props.setAngleType("deg")
-        Toast.show({text: 'angles: deg', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
+      {type: PRESS_TICK_ITEM, params: {text: "deg", isActive:() => (this.props.angleType === 'deg'), onPress: ()=>{
+        this.setAngleType("deg")
       }}},
-      {type: PRESS_ITEM, params: {text: "grad", onPress: ()=>{
-        this.props.setAngleType("grad") 
-        Toast.show({text: 'angles: grad', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
+      {type: PRESS_TICK_ITEM, params: {text: "grad", isActive:() => (this.props.angleType === 'grad'), onPress: ()=>{
+        this.setAngleType("grad") 
+        // Toast.show({text: 'angles: grad', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
       }}},
       {type: HEADER, params: {text: "Others"}},
       {type: NAVIGATE_ITEM, params: {text: "About", navigate: this.props.navigation.navigate, screenName: "About"}},
     ],
   }
 
+  setAngleType(angleType) {
+    console.log(this.state.angleType)
+    this.props.setAngleType(angleType)
+    this.props.setSettingsAngle(angleType)
+    this.setState({
+      angleType: angleType
+    })
+  }
+
   renderItem = (item) => {
     switch(item.type) {
       case HEADER: 
-        return renderHeader({text: item.params.text})
+        return renderHeader(item.params)
       case PRESS_ITEM: 
-        return renderPressItem({text: item.params.text, onPress: item.params.onPress})
+        return renderPressItem(item.params)
+      case PRESS_TICK_ITEM: 
+        return renderPressTickItem(item.params)
       case SWITCH_ITEM: 
-        return renderSwitchItem({text: item.params.text, onSwitch: {}})
+        return renderSwitchItem(item.params)
       case NAVIGATE_ITEM: 
-        return renderNavigateItem({text: item.params.text, navigate: item.params.navigate, screenName: item.params.screenName})
+        return renderNavigateItem(item.params)
       default: 
-        return renderPressItem({text: item.params.text})
+        return renderPressItem(item.params)
     }
   }
   
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
       <List>
         {this.state.itemArray.map(item => this.renderItem(item))}
       </List>
-      <Root/>
-      </View> 
+      </ScrollView> 
       );
   }
 }
 
 // redux
 const mapStateToProps = state => ({
+  angleType: state.settings.angleType
 })
 
 const mapDispatchToProps = {
   newButtonArrayButtons: newButtonArrayButtons,
   setAngleType: setAngleType,
+  setSettingsAngle: setSettingsAngle,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen)

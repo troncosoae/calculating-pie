@@ -118,6 +118,7 @@ class HistoryScreen extends React.Component {
                         blurOnSubmit={true}
                         onSubmitEditing={this.onSubmitInput}
                         keyboardAppearance='dark'
+                        selectionColor={AppColors.cursorColor}
                     />
                 </View>
                 <KeyboardSpacer />

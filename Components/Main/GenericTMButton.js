@@ -29,8 +29,6 @@ GenericTMButton.propTypes = {
   onPress: PropTypes.func,
   touchableStyle: PropTypes.object,
   textStyle: PropTypes.object,
-  color: PropTypes.string,
-  textColor: PropTypes.string,
 }
 
 export default GenericTMButton

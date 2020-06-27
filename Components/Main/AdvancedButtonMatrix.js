@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     backgroundColor: Colors.backgroundColor,
-    flex: 0.55,
   },
   rowView: {
     flexDirection: 'row',
@@ -108,7 +107,7 @@ class AdvancedButtonMatrix extends React.Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {flex:0.18*this.props.arrayButtons.length}]}>
         {this.printButtonArray()}
       </View>
     )

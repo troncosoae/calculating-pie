@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+import { AppColors } from '../../Design/Colors';
 
 
 const styles = StyleSheet.create({
@@ -64,7 +65,7 @@ class CursorInput extends React.Component {
         charArray.forEach(char => {
             charViewArray.push(
                 <TouchableCursor 
-                    onPress={this.setCursorPosition(position)} color={this.props.cursorPosition === position ? "blue":null}
+                    onPress={this.setCursorPosition(position)} color={this.props.cursorPosition === position ? AppColors.cursorColor:null}
                 />
             )
             charViewArray.push(
