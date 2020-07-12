@@ -52,12 +52,13 @@ class AdvancedButtonsSelectScreen extends React.Component {
       {text: "log( ,10)", switchStatus: false, key: "log10"},
       {text: "\u03C0", switchStatus: false, key: "pi"},
       {text: "e", switchStatus: false, key: "e"},
+      {text: "i", switchStatus: false, key: "i"},
       {text: "sqrt()", switchStatus: false, key: "sqrt"},
       {text: "x^2", switchStatus: false, key: "square"},
-      {text: "x^y", switchStatus: false, key: "pwr"},
-      {text: "cos(", switchStatus: false, key: "cos"},
-      {text: "sin(", switchStatus: false, key: "sin"},
-      {text: "tan(", switchStatus: false, key: "tan"},
+      {text: "x^y      \u21A5 log(x,a)", switchStatus: false, key: "pwr"},
+      {text: "cos(      \u21A5 acos(", switchStatus: false, key: "cos"},
+      {text: "sin(      \u21A5 asin(", switchStatus: false, key: "sin"},
+      {text: "tan(      \u21A5 atan(", switchStatus: false, key: "tan"},
     ],
   }
 
@@ -84,7 +85,7 @@ class AdvancedButtonsSelectScreen extends React.Component {
     let buttonOnArray = this.state.itemArray.filter(item => item.switchStatus)
     buttonOnArray = buttonOnArray.map(item => item.key)
     let buttonCount = buttonOnArray.length
-    let rowCount = floor(buttonCount / 5) + 1
+    let rowCount = Math.ceil(buttonCount / 5)
     let buttonsPerRow = floor(buttonCount / rowCount)
     let rowsWithExtraCount = buttonCount % rowCount
     // console.log(buttonOnArray)

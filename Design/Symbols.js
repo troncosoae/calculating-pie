@@ -23,6 +23,7 @@ export const Symbols = {
   log10: {multipleCount: 2, sym: "log_{10}(", txt: ["log(", ",10)"], math: ["log(", ",10)"]},
   pi: {sym: '\u03C0', txt: '\u03C0', math: 'pi'},
   e: {sym: 'e', txt: 'e', math: 'e'},
+  i: {sym: 'i', txt: 'i', math: 'i'},
   sum: {sym: 'sum(', txt: 'sum(', math: 'sum('},
   mean: {sym: 'mean(', txt: 'mean(', math: 'mean('},
   std: {sym: 'std(', txt: 'std(', math: 'std('},

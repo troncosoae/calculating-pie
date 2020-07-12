@@ -51,7 +51,7 @@ class SettingsScreen extends React.Component {
     angleType: 'rad',
     itemArray: [
       {type: HEADER, params: {text: "Advanced Buttons"}},
-      {type: NAVIGATE_ITEM, params: {text: "Advanced Button Select", navigate: this.props.navigation.navigate, screenName: "AdvancedButtonsSelect"}},
+      {type: NAVIGATE_ITEM, params: {text: "Edit buttons", navigate: this.props.navigation.navigate, screenName: "AdvancedButtonsSelect"}},
       {type: HEADER, params: {text: "Angle Configuration"}},
       {type: PRESS_TICK_ITEM, params: {text: "rad", isActive:() => (this.props.angleType === 'rad'), onPress: () => {
         this.setAngleType("rad")

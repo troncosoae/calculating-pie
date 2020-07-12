@@ -122,8 +122,9 @@ class MainScreen extends React.Component {
 
     getAns = () => {
         if (this.props.inputsArray.length > 0) {
-            let ans = this.props.inputsArray[this.props.ansIndex].textResult
-            this.addCharToInput("ans", ans)
+            // let ans = this.props.inputsArray[this.props.ansIndex].textResult
+            // this.addCharToInput("ans", ans)
+            this.addCharToInput("ans", "ans")
             console.log(this.props.inputsArray[this.props.ansIndex].textResult)
         }
     }
