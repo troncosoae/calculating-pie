@@ -60,7 +60,7 @@ export const AppColors = {
     rowSeparator: Colors.darkGray,
     settingsBackground: Colors.darkGray,
     navigationHeaderBackground: Colors.darkGray,
-    switchThumb: Colors.black,
+    switchThumb: Colors.darkGray,
     switchTrackOn: Colors.main,
     switchTrackOff: Colors.notQuiteWhite,
     cursorColor: Colors.lightBlue,

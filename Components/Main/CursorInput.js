@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   touchableCursor: {
-      width: 2,
+      width: 1.5,
       height: 35,
   },
 });

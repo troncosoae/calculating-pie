@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         color: TextColors.textInput,
         fontSize: FontSizes.simpleCalculatorInput,
         minHeight: FontSizes.simpleCalculatorInput*2,
-        letterSpacing: 2,
+        letterSpacing: 1,
     },
     textResult: {
       color: TextColors.textResult,
