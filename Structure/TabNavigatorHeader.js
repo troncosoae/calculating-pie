@@ -61,7 +61,7 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     style={styles.paddingIcons}
                     type='font-awesome'
                     color={iconColors.colorExtras}
-                    onPress={()=>{}}
+                    onPress={()=>{console.log(state)}}
                 />
                 <Icon 
                     name='pi-box'
@@ -75,7 +75,7 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     style={styles.paddingIcons}
                     type='material-community'
                     color={iconColors.colorExtras}
-                    onPress={()=>{console.log(state)}}
+                    onPress={()=>{navigation.navigate("Commands")}}
                 />
                 <Icon 
                     name='settings'

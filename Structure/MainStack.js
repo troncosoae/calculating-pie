@@ -9,6 +9,7 @@ import TabNavigatorHeader from './TabNavigatorHeader';
 import HistoryScreen from '../Screens/HistoryScreen';
 import MainScreen from '../Screens/MainScreen';
 import ConstantsScreen from '../Screens/ConstantsScreen';
+import CommandsScreen from '../Screens/CommandsScreen';
 import AddConstantScreen from '../Screens/ConstantsSubScreens/AddConstantScreen';
 import SettingsScreen from '../Screens/SettingsScreen';
 import AboutScreen from '../Screens/SettingsSubScreens/AboutScreen';
@@ -45,7 +46,6 @@ function MainStack() {
                     <Icon 
                         name='library-add'
                         type='materialicons'
-                        // color={state.index == 0 ? iconColors.colorOn : iconColors.colorNeutral}
                         style={{paddingRight:20}}
                         color={AppColors.inactiveTintColor}
                         onPress={()=>{navigation.navigate("AddConstant")}}
@@ -60,6 +60,29 @@ function MainStack() {
                 headerTitle: 'Add Constant',
             }}
         />
+        <Stack.Screen 
+            name="Commands" 
+            component={CommandsScreen} 
+            options={({navigation}) => ({
+                headerTitle: 'Commands',
+                // headerRight: () => (
+                //     <Icon 
+                //         name='library-add'
+                //         type='materialicons'
+                //         style={{paddingRight:20}}
+                //         color={AppColors.inactiveTintColor}
+                //         onPress={()=>{navigation.navigate("AddConstant")}}
+                //     />
+                // ),
+            })}
+        />
+        {/* <Stack.Screen 
+            name="AddConstant" 
+            component={AddConstantScreen} 
+            options={{ 
+                headerTitle: 'Add Constant',
+            }}
+        /> */}
         <Stack.Screen 
             name="Settings" 
             component={SettingsScreen} 

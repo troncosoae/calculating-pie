@@ -139,11 +139,23 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
     }
 }
 
+const defaultCommandsArray = [
+    {textName: "hey", textDefine: "f(x,y)=2x+y", isDefault: true},
+]
+
+const commandsReducer = (state = {commandsArray: defaultCommandsArray}, action) => {
+    switch(action.type) {
+        default:
+            return state;
+    }
+}
+
 const reducer = combineReducers({
     main: mainReducer,
     buttons: buttonsReducer,
     settings: settingsReducer,
     constants: constantsReducer,
+    commands: commandsReducer,
 })
 
 export default reducer

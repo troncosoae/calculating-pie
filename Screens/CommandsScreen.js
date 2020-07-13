@@ -5,7 +5,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { AppColors, InputTextColors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
-import ConstantRow from '../Components/Constants/ConstantRow';
+import CommandRow from '../Components/Commands/CommandRow';
 import { text_evaluate } from '../MathBox/mathBox';
 
 import { addInputToHistory } from '../Redux/mainActions';
@@ -42,20 +42,13 @@ const styles = StyleSheet.create({
 });
 
 
-class ConstantsScreen extends React.Component {
-
-    exportConstant = (textSym, value) => () => {
-        let input = textSym + " = " + value
-        let result = text_evaluate(input, this.props.parser)
-        this.props.addInputToHistory(input, result.toString())
-        this.props.navigation.goBack()
-    }
+class CommandsScreen extends React.Component {
 
     renderItem = ({item, index}) => {
-        return <ConstantRow 
-            {...item}
-            onPress={item.isDefault ? this.exportConstant(item.textSym, item.textName):this.exportConstant(item.textSym, item.textValue)}
-            onLongPress={()=>{}}
+        return <CommandRow 
+                {...item}
+                onPress={()=>{}}
+                onLongPress={()=>{}}
             />
     }
   
@@ -66,7 +59,7 @@ class ConstantsScreen extends React.Component {
                     <FlatList
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
-                        data={this.props.constantsArray}
+                        data={this.props.commandsArray}
                     />
                 </View>
             </View>
@@ -79,7 +72,7 @@ const mapStateToProps = state => ({
     // inputsArray: state.main.inputsArray,
     // ansIndex: state.main.ansIndex,
     parser: state.main.parser,
-    constantsArray: state.constants.constantsArray,
+    commandsArray: state.commands.commandsArray,
 })
 
 const mapDispatchToProps = {
@@ -87,4 +80,4 @@ const mapDispatchToProps = {
     addInputToHistory: addInputToHistory,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConstantsScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(CommandsScreen)
