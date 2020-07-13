@@ -50,8 +50,9 @@ class HistoryScreen extends React.Component {
     }
 
     addTextToInput = (text) => () => {
+        textArray = text.split("=")
         this.setState({
-            input: this.state.input + text
+            input: this.state.input + textArray[0].trim()
         })
     }
 
