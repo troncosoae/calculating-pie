@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {Text, Button} from 'react-native'
+import { Icon } from 'react-native-elements';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AppColors } from '../Design/Colors';
@@ -41,12 +42,13 @@ function MainStack() {
             options={({navigation}) => ({
                 headerTitle: 'Constants',
                 headerRight: () => (
-                    <Button 
-                        title="new"
-                        onPress={() => {
-                            console.log("now")
-                            navigation.navigate("AddConstant")
-                        }}
+                    <Icon 
+                        name='library-add'
+                        type='materialicons'
+                        // color={state.index == 0 ? iconColors.colorOn : iconColors.colorNeutral}
+                        style={{paddingRight:20}}
+                        color={AppColors.inactiveTintColor}
+                        onPress={()=>{navigation.navigate("AddConstant")}}
                     />
                 ),
             })}

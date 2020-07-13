@@ -56,31 +56,44 @@ class GenericForm extends React.Component {
     }
 
     getHandler = key => val => {
-        this.setState({[key]: val})
+        this.setState({[key]: {...this.state[key], value: val}})
+    }
+
+    validInput = () => {
+        let valid = true
+        Object.keys(this.state).forEach(
+            (key) => {
+                if (this.state[key].required && this.state[key].value == "") {
+                    valid = false
+                }
+            }
+        )
+        return valid
     }
 
     render() {
         return (
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
-                {map(Object.keys(this.state), (item) => (
+                {map(Object.keys(this.state), (key) => (
                     <View style={styles.inputContainer}>
                         <TextInput
-                            keyboardType={this.state[item].keyboardType}
+                            keyboardType={this.state[key].keyboardType}
                             style={styles.input}
-                            placeholder={this.state[item].placeholder}
+                            value={this.state[key].value}
+                            onChangeText={this.getHandler(key)}
+                            placeholder={this.state[key].placeholder}
                             placeholderTextColor={AppColors.notQuiteWhite}
                             keyboardAppearance='dark'
                             autoCapitalize='none'
                             autoCorrect={false}
-                            returnKeyType="return"
                         />
                     </View>
                 ))}
                 <Button 
                     title="Submit" 
-                    // onPress={handleSubmit} 
+                    onPress={this.props.handleSubmit(this.state)}
                     color={AppColors.linkButtonColor} 
-                    // disabled={!validInput()}
+                    disabled={!this.validInput()}
                 />
             </KeyboardAvoidingView>
         )

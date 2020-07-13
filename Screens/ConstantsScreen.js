@@ -44,23 +44,17 @@ const styles = StyleSheet.create({
 
 class ConstantsScreen extends React.Component {
 
-    state = {
-        input: "",
-        showClear: false,
-    }
-
-    exportConstant = (textSym, textName) => () => {
-        let input = textSym + " = " + textName
+    exportConstant = (textSym, value) => () => {
+        let input = textSym + " = " + value
         let result = this.props.parser.evaluate(input)
-        console.log(input, result)
-        console.log(result.toString())
         this.props.addInputToHistory(input, result.toString())
+        this.props.navigation.goBack()
     }
 
     renderItem = ({item, index}) => {
         return <ConstantRow 
             {...item}
-            onPress={this.exportConstant(item.textSym, item.textName)}
+            onPress={item.isDefault ? this.exportConstant(item.textSym, item.textName):this.exportConstant(item.textSym, item.textValue)}
             onLongPress={()=>{}}
             />
     }
@@ -72,10 +66,7 @@ class ConstantsScreen extends React.Component {
                     <FlatList
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
-                        data={[
-                            {textSym: "c", textName: "speedOfLight", textValue: "0000"},
-                            {textSym: "c", textName: "speedOfLight", textValue: "0000"}
-                        ]}
+                        data={this.props.constantsArray}
                     />
                 </View>
             </View>
@@ -88,6 +79,7 @@ const mapStateToProps = state => ({
     // inputsArray: state.main.inputsArray,
     // ansIndex: state.main.ansIndex,
     parser: state.main.parser,
+    constantsArray: state.constants.constantsArray,
 })
 
 const mapDispatchToProps = {
