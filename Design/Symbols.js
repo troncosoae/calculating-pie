@@ -24,6 +24,8 @@ export const Symbols = {
   pi: {sym: '\u03C0', txt: '\u03C0', math: 'pi'},
   e: {sym: 'e', txt: 'e', math: 'e'},
   i: {sym: 'i', txt: 'i', math: 'i'},
+  fact: {sym: '!', txt: '!', math: '!'},
+  // tonum: {sym: '.toNum', txt: '.toNumber()', math: '.toNumber()'},
   sum: {sym: 'sum(', txt: 'sum(', math: 'sum('},
   mean: {sym: 'mean(', txt: 'mean(', math: 'mean('},
   std: {sym: 'std(', txt: 'std(', math: 'std('},

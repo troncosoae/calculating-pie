@@ -88,6 +88,7 @@ class CursorInput extends React.Component {
         <ScrollView ref={ref => {this.scrollView = ref}}
             style={[this.props.style, {maxHeight:50}]} horizontal={true} showsHorizontalScrollIndicator={false}
             onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})}
+            // onContentSizeChange={() => this.scrollView.scrollTo({x: 20*this.props.cursorPosition, y: 0, animated: true})}
         >
             {this.renderText()}
         </ScrollView >

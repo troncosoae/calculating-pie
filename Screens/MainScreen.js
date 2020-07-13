@@ -108,7 +108,7 @@ class MainScreen extends React.Component {
                 mathInput: [],
                 cursorPosition: 0,
             })
-            // this.flatListRef.scrollToIndex({animated: false, index: 1});
+            this.refs.FlatList.scrollToOffset({ animated: true, offset: 0 })
         }
     }
 
@@ -138,7 +138,7 @@ class MainScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
-                        ref={(ref) => { this.flatListRef = ref; }}
+                        ref="FlatList"
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}

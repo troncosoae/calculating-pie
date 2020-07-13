@@ -55,6 +55,8 @@ class AdvancedButtonsSelectScreen extends React.Component {
       {text: "i", switchStatus: false, key: "i"},
       {text: "sqrt()", switchStatus: false, key: "sqrt"},
       {text: "x^2", switchStatus: false, key: "square"},
+      {text: "!", switchStatus: false, key: "fact"},
+      // {text: ".toNumber()", switchStatus: false, key: "tonum"},
       {text: "x^y      \u21A5 log(x,a)", switchStatus: false, key: "pwr"},
       {text: "cos(      \u21A5 acos(", switchStatus: false, key: "cos"},
       {text: "sin(      \u21A5 asin(", switchStatus: false, key: "sin"},

@@ -46,7 +46,8 @@ class ConstantsScreen extends React.Component {
 
     exportConstant = (textSym, value) => () => {
         let input = textSym + " = " + value
-        let result = this.props.parser.evaluate(input)
+        // let result = this.props.parser.evaluate(input)
+        let result = text_evaluate(input, this.props.parser)
         this.props.addInputToHistory(input, result.toString())
         this.props.navigation.goBack()
     }

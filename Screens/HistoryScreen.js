@@ -61,6 +61,7 @@ class HistoryScreen extends React.Component {
             let result = text_evaluate(input, this.props.parser)
             this.props.addInputToHistory(input, result)
             this.setState({ input: ""})
+            this.refs.FlatList.scrollToOffset({ animated: true, offset: 0 })
         }
     }
 
@@ -83,6 +84,7 @@ class HistoryScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
+                        ref="FlatList"
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}
