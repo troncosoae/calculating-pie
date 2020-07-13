@@ -1,11 +1,14 @@
 import * as React from 'react';
+import {Text, Button} from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { AppColors } from '../Design/Colors';
 import Tabs from './Tabs';
 import TabNavigatorHeader from './TabNavigatorHeader';
-import HistoryScreen from '../Screens/HistoryScreen'
-import MainScreen from '../Screens/MainScreen'
+import HistoryScreen from '../Screens/HistoryScreen';
+import MainScreen from '../Screens/MainScreen';
+import ConstantsScreen from '../Screens/ConstantsScreen';
+import AddConstantScreen from '../Screens/ConstantsSubScreens/AddConstantScreen';
 import SettingsScreen from '../Screens/SettingsScreen';
 import AboutScreen from '../Screens/SettingsSubScreens/AboutScreen';
 import AdvancedButtonsSelectScreen from '../Screens/SettingsSubScreens/AdvancedButtonsSelectScreen';
@@ -30,6 +33,29 @@ function MainStack() {
             options={{
                 headerTitle: 'Main',
                 headerShown: false
+            }}
+        />
+        <Stack.Screen 
+            name="Constants" 
+            component={ConstantsScreen} 
+            options={({navigation}) => ({
+                headerTitle: 'Constants',
+                headerRight: () => (
+                    <Button 
+                        title="new"
+                        onPress={() => {
+                            console.log("now")
+                            navigation.navigate("AddConstant")
+                        }}
+                    />
+                ),
+            })}
+        />
+        <Stack.Screen 
+            name="AddConstant" 
+            component={AddConstantScreen} 
+            options={{ 
+                headerTitle: 'Add Constant',
             }}
         />
         <Stack.Screen 

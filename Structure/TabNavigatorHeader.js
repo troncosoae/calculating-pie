@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
     },
     padding: {
-        paddingVertical: 5,
+        paddingVertical: 2.5,
     },
     paddingIcons: {
         paddingVertical: 5,
@@ -52,9 +52,7 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     style={styles.paddingIcons}
                     type='ionicon'
                     color={state.index == 1 ? iconColors.colorOn : iconColors.colorNeutral}
-                    onPress={()=>{
-                        navigation.navigate("History")
-                    }}
+                    onPress={()=>{navigation.navigate("History") }}
                 />
             </View>
             <View style={[styles.flexEnd, styles.rowDirection]}>
@@ -70,7 +68,7 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     style={styles.paddingIcons}
                     type='material-community'
                     color={iconColors.colorExtras}
-                    onPress={()=>{}}
+                    onPress={()=>{navigation.navigate("Constants")}}
                 />
                 <Icon 
                     name='book-open-page-variant'
@@ -84,9 +82,7 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     style={styles.paddingIcons}
                     type='material-icons'
                     color={iconColors.colorExtras}
-                    onPress={()=>{
-                        navigation.navigate("Settings")
-                    }}
+                    onPress={()=>{navigation.navigate("Settings")}}
                 />
             </View>
         </View>
