@@ -44,10 +44,14 @@ const styles = StyleSheet.create({
 
 class CommandsScreen extends React.Component {
 
+    onPressCommand = (input) => () => {
+        this.props.navigation.navigate("History", {prevScreen: "Commands", input: input})
+    }
+
     renderItem = ({item, index}) => {
         return <CommandRow 
                 {...item}
-                onPress={()=>{}}
+                onPress={this.onPressCommand(item.textDefine)}
                 onLongPress={()=>{}}
             />
     }

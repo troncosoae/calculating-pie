@@ -36,7 +36,7 @@ class CommandRow extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity style={styles.container} onLongPress={this.props.onLongPress} onPress={this.props.onPress} activeOpacity={1}>
+      <TouchableOpacity style={styles.container} onLongPress={this.props.onLongPress} onPress={this.props.onPress}>
         <Text style={[styles.textName]}>{this.props.textName}</Text>
         <Text style={[styles.textDefine]}>    {this.props.textDefine}</Text>
       </TouchableOpacity>

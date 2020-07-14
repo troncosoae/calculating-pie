@@ -49,8 +49,20 @@ class HistoryScreen extends React.Component {
         showClear: false,
     }
 
+    componentDidMount(){
+        this.props.navigation.addListener('focus', () => {
+            let params = this.props.route.params
+            if (params.prevScreen === "Commands"){
+                this.setState({
+                    input: this.state.input + params.input
+                })
+            }
+            this.props.route.params = {}
+        })
+    }
+
     addTextToInput = (text) => () => {
-        textArray = text.split("=")
+        let textArray = text.split("=")
         this.setState({
             input: this.state.input + textArray[0].trim()
         })
