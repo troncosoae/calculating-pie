@@ -7,9 +7,8 @@ import { AppColors, TextColors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
 import { renderHeader, renderPressItem, renderNavigateItem, renderSwitchItem, renderPressTickItem } from '../Components/Settings/listItems';
 import { newButtonArrayButtons } from '../Redux/buttonsActions';
-import { setAngleType } from '../Redux/mainActions';
+import { setAngleType, clearHistory } from '../Redux/mainActions';
 import { setSettingsAngle } from '../Redux/settingsActions';
-import { forEach } from 'mathjs';
 
 const styles = StyleSheet.create({
   container: {
@@ -63,7 +62,12 @@ class SettingsScreen extends React.Component {
         this.setAngleType("grad") 
         // Toast.show({text: 'angles: grad', buttonText: 'Ok', style:{backgroundColor: AppColors.toast}})
       }}},
-      {type: HEADER, params: {text: "Others"}},
+      {type: HEADER, params: {text: "History"}},
+      {type: PRESS_ITEM, params: {text: "Clear history", onPress:() => {
+        this.props.clearHistory()
+        this.props.navigation.goBack()
+      }}},
+      {type: HEADER, params: {text: "About"}},
       {type: NAVIGATE_ITEM, params: {text: "About", navigate: this.props.navigation.navigate, screenName: "About"}},
     ],
   }
@@ -114,6 +118,7 @@ const mapDispatchToProps = {
   newButtonArrayButtons: newButtonArrayButtons,
   setAngleType: setAngleType,
   setSettingsAngle: setSettingsAngle,
+  clearHistory: clearHistory,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsScreen)
