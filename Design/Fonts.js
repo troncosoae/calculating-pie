@@ -16,5 +16,5 @@ export const FontSizes = {
     aboutBody: 14,
     aboutTitles: 20,
     settingsHeader: 18,
-    settingItem: 24,
+    settingItem: 22,
 }

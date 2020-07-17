@@ -1,4 +1,4 @@
-import { create, all } from 'mathjs'
+import { create, all, typeOf } from 'mathjs'
 
 const math = create(all, {
 })
@@ -10,18 +10,42 @@ export function text_convert(input) {
 
 export function text_evaluate(input, parser) {
     // evalutates text
+    console.log(input)
     let output = ""
     try {
         output = parser.evaluate(input)
+        // console.log(typeof output)
+        // console.log(typeOf(output))
+        // console.log(output)
         if (typeof output === 'number') {
+            parser.evaluate("ans=" + output.toString())
+        } else if (typeOf(output) === 'Unit' || typeOf(output) === 'Complex') {
             parser.evaluate("ans=" + output.toString())
         }
         output = math.format(output, {precision: 14})
+        console.log(parser.scope)
     } catch (error) {
         if (error instanceof TypeError) {
-            output = "TypeError"
+            try {
+                let newScope = {...parser.scope}
+                for (const [key, value] of Object.entries(newScope)) {
+                    newScope[key] = value.value ? value.value : value;
+                }
+                output = math.evaluate(input, newScope)
+                
+                for (const [key, value] of Object.entries(newScope)) {
+                    if (!(key in parser.scope)) {
+                        parser.scope[key] = value
+                    } 
+                }
+            } catch(error) {
+                output = "Error"
+                if (error["message"]) {
+                    output = error["message"]
+                }
+            }
         } else {
-            output = "Error. "
+            output = "Error"
             if (error["message"]) {
                 output = error["message"]
             }

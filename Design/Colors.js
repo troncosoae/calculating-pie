@@ -10,7 +10,7 @@ export const Colors = {
     white: "#e8eddf",
     realWhite: "#ffffff",
     realBlack: "#000000",
-    red: "#D64744",
+    lightBlue: "#0C6DF2",
 }
   
 export const ButtonColors = {
@@ -48,6 +48,7 @@ export const iconColors = {
 export const AppColors = {
     background: Colors.black,
     ansSelect: Colors.darkGray,
+    toast: Colors.middleGray,
     notQuiteWhite: Colors.notQuiteWhite,
     textlight: Colors.realWhite,
     textdark: Colors.realBlack,
@@ -59,4 +60,8 @@ export const AppColors = {
     rowSeparator: Colors.darkGray,
     settingsBackground: Colors.darkGray,
     navigationHeaderBackground: Colors.darkGray,
+    switchThumb: Colors.darkGray,
+    switchTrackOn: Colors.main,
+    switchTrackOff: Colors.notQuiteWhite,
+    cursorColor: Colors.lightBlue,
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, StyleSheet, Button, Alert, Text } from 'react-native';
 
-import { AppColors } from '../Design/Colors';
-import { FontSizes } from '../Design/Fonts'
+import { AppColors } from '../../Design/Colors';
+import { FontSizes } from '../../Design/Fonts'
 
 const styles = StyleSheet.create({
     container: {
@@ -31,7 +31,7 @@ class AboutScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.titles}>
+                {/* <Text style={styles.titles}>
                     About Calculator-Nut
                 </Text>
                 <Text style={styles.body}>
@@ -49,6 +49,19 @@ class AboutScreen extends React.Component {
                 </Text>
                 <Text style={styles.body}>
                     {"If you have any opinions, suggestions or have detected a bug somewhere please post a comment. Like we said, our interest is to improve this calculator so that one day we actually can meet the expected standards. "}
+                </Text> */}
+                
+                <Text style={styles.titles}>
+                    About Calculating-Pie
+                </Text>
+                <Text style={styles.body}>
+                    {"App created to make good use of the mathjs library."}
+                    </Text>
+                <Text style={styles.titles}>
+                    To explore new functions...
+                </Text>
+                <Text style={styles.body}>
+                    {"Go to https://mathjs.org/. "}
                 </Text>
             </View>
         )

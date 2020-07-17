@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+import { AppColors } from '../../Design/Colors';
 
 
 const styles = StyleSheet.create({
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   touchableCursor: {
-      width: 2,
+      width: 1.5,
       height: 35,
   },
 });
@@ -64,7 +65,7 @@ class CursorInput extends React.Component {
         charArray.forEach(char => {
             charViewArray.push(
                 <TouchableCursor 
-                    onPress={this.setCursorPosition(position)} color={this.props.cursorPosition === position ? "blue":null}
+                    onPress={this.setCursorPosition(position)} color={this.props.cursorPosition === position ? AppColors.cursorColor:null}
                 />
             )
             charViewArray.push(
@@ -87,6 +88,7 @@ class CursorInput extends React.Component {
         <ScrollView ref={ref => {this.scrollView = ref}}
             style={[this.props.style, {maxHeight:50}]} horizontal={true} showsHorizontalScrollIndicator={false}
             onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})}
+            // onContentSizeChange={() => this.scrollView.scrollTo({x: 20*this.props.cursorPosition, y: 0, animated: true})}
         >
             {this.renderText()}
         </ScrollView >

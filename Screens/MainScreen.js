@@ -10,7 +10,7 @@ import BasicButtonsMatrix from '../Components/Main/BasicButtonsMatrix';
 import AdvancedButtonMatrix from '../Components/Main/AdvancedButtonMatrix';
 import { text_evaluate } from '../MathBox/mathBox';
 
-import { addInputToHistory, setAnsIndex } from '../Redux/mainActions';
+import { addInputToHistory, setAnsIndex, clearHistory } from '../Redux/mainActions';
 
 const styles = StyleSheet.create({
     container: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         color: TextColors.textInput,
         fontSize: FontSizes.simpleCalculatorInput,
         minHeight: FontSizes.simpleCalculatorInput*2,
-        letterSpacing: 2,
+        letterSpacing: 1,
     },
     textResult: {
       color: TextColors.textResult,
@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
       paddingTop: 10,
     },
 });
+
+const autoAnsChars = ["+", "-", "/", "*", "^", "^2"]
 
 
 class MainScreen extends React.Component {
@@ -75,11 +77,19 @@ class MainScreen extends React.Component {
     }
 
     addCharToInput = (char, mathChar) => {
-        this.state.textInput.splice(this.state.cursorPosition, 0, char)
-        this.state.mathInput.splice(this.state.cursorPosition, 0, mathChar)
-        this.setState({
-            cursorPosition: this.state.cursorPosition + 1,
-        })
+        if (this.state.textInput.length === 0 && autoAnsChars.includes(mathChar)) {
+            this.state.textInput.splice(this.state.cursorPosition, 0, "ans", char)
+            this.state.mathInput.splice(this.state.cursorPosition, 0, "ans", mathChar)
+            this.setState({
+                cursorPosition: this.state.cursorPosition + 2,
+            })
+        } else {
+            this.state.textInput.splice(this.state.cursorPosition, 0, char)
+            this.state.mathInput.splice(this.state.cursorPosition, 0, mathChar)
+            this.setState({
+                cursorPosition: this.state.cursorPosition + 1,
+            })
+        }
     }
 
     acInput = () => {
@@ -100,6 +110,10 @@ class MainScreen extends React.Component {
 
     onSubmit = () => {
         let input = this.state.mathInput.join("")
+        let closePCount = (input.match(/\(/g) || []).length - (input.match(/\)/g) || []).length
+        if (closePCount > 0) {
+            input = input + ")".repeat(closePCount)
+        }
         if (input !== "") {
             let result = text_evaluate(input, this.props.parser)
             this.props.addInputToHistory(input, result)
@@ -108,7 +122,7 @@ class MainScreen extends React.Component {
                 mathInput: [],
                 cursorPosition: 0,
             })
-            // this.flatListRef.scrollToIndex({animated: false, index: 1});
+            this.refs.FlatList.scrollToOffset({ animated: true, offset: 0 })
         }
     }
 
@@ -122,8 +136,7 @@ class MainScreen extends React.Component {
 
     getAns = () => {
         if (this.props.inputsArray.length > 0) {
-            let ans = this.props.inputsArray[this.props.ansIndex].textResult
-            this.addCharToInput("ans", ans)
+            this.addCharToInput("ans", "ans")
             console.log(this.props.inputsArray[this.props.ansIndex].textResult)
         }
     }
@@ -137,17 +150,11 @@ class MainScreen extends React.Component {
             <View style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
-                        ref={(ref) => { this.flatListRef = ref; }}
+                        ref="FlatList"
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}
                         data={this.props.inputsArray}
-                        // stickyHeaderIndices={[this.props.ansIndex]}
-                        invertStickyHeaders={false} 
-                        // getItemLayout={(data, index) => (
-                        //     {length: 60, offset: 60 * index, index}
-                        //   )}
-                        // initialScrollIndex={1}
                     />
                 </View>
                 <CursorInput style={styles.cursorInputStyle} textStyle={styles.cursorInputTextStyle}
@@ -185,6 +192,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     addInputToHistory: addInputToHistory,
     setAnsIndex: setAnsIndex,
+    clearHistory: clearHistory,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)

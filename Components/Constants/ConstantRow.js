@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
   result: {
     paddingTop: 5,
   },
-  textInput: {
+  textName: {
     color: TextColors.textInput,
     fontSize: FontSizes.textInput,
   },
-  textResult: {
+  textValue: {
     color: TextColors.textResult,
     fontSize: FontSizes.textResult,
   },
@@ -32,24 +32,24 @@ const styles = StyleSheet.create({
 
 
 
-class InputRow extends React.Component {
+class ConstantRow extends React.Component {
 
   render() {
     return (
       <TouchableOpacity style={styles.container} onLongPress={this.props.onLongPress} onPress={this.props.onPress}>
-        <Text style={[styles.textInput, {fontWeight:this.props.isAns? 'bold':null}]}>{this.props.textInput}</Text>
-        <Text style={[styles.textResult, {fontWeight:this.props.isAns? 'bold':null}]}> > {this.props.textResult}</Text>
+        <Text style={[styles.textName]}>{this.props.textSym}  ({this.props.textName})</Text>
+        <Text style={[styles.textValue]}> = {this.props.textValue}</Text>
       </TouchableOpacity>
     )
   }
 }
 
-InputRow.propTypes = {
-  textInput: PropTypes.string,
-  textResult: PropTypes.string,
-  isAns: PropTypes.bool,
-  onPress: PropTypes.func,
-  onLongPress: PropTypes.func,
+ConstantRow.propTypes = {
+    textSym: PropTypes.string,
+    textName: PropTypes.string,
+    textValue: PropTypes.string,
+    onPress: PropTypes.func,
+    onLongPress: PropTypes.func,
 }
 
-export default InputRow
+export default ConstantRow

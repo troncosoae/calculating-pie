@@ -127,7 +127,7 @@ class BasicButtonsMatrix extends React.Component {
           {this.getNumberButton("1")}
           {this.getNumberButton("2")}
           {this.getNumberButton("3")}
-          {this.getSymbolButton('sum')}
+          {this.getSymbolButton('add')}
           {this.getSymbolButton('sub')}
         </View>
         <View style={styles.rowView}>
