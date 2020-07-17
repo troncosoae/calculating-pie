@@ -47,17 +47,14 @@ class CommandsScreen extends React.Component {
 
     state = {
         searchInput: "",
-        headerIndices: [],
         commandsArray: [],
     }
 
     componentDidMount() {
         let commandsArray = []
-        let headerIndices = []
         let i = 0
         this.props.commandsArray.forEach(sec => {
             commandsArray.push({headerName: sec.sectionName, type: "HEADER"})
-            headerIndices.push(i)
             i += 1
             sec.commands.forEach(com => {
                 commandsArray.push({...com, type: "COMMAND", 
@@ -67,7 +64,6 @@ class CommandsScreen extends React.Component {
         })
         this.setState({
             commandsArray: commandsArray,
-            headerIndices: headerIndices,
         })
     }
 
@@ -110,7 +106,6 @@ class CommandsScreen extends React.Component {
                     <FlatList
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
-                        // stickyHeaderIndices={this.state.headerIndices}
                         data={
                             this.state.searchInput === "" ? this.state.commandsArray:
                             this.state.commandsArray.filter(
