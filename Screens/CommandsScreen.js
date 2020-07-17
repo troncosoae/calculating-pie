@@ -5,7 +5,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import { AppColors, InputTextColors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
-import CommandRow from '../Components/Commands/CommandRow';
+import { CommandRow, HeaderCommandRow } from '../Components/Commands/CommandRow';
 import { text_evaluate } from '../MathBox/mathBox';
 
 import { addInputToHistory } from '../Redux/mainActions';
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     padding: {
       padding: 10,
       paddingTop: 5,
+      paddingBottom: 5,
     },
     textInput: {
       backgroundColor: InputTextColors.background,
@@ -44,26 +45,83 @@ const styles = StyleSheet.create({
 
 class CommandsScreen extends React.Component {
 
+    state = {
+        searchInput: "",
+        headerIndices: [],
+        commandsArray: [],
+    }
+
+    componentDidMount() {
+        let commandsArray = []
+        let headerIndices = []
+        let i = 0
+        this.props.commandsArray.forEach(sec => {
+            commandsArray.push({headerName: sec.sectionName, type: "HEADER"})
+            headerIndices.push(i)
+            i += 1
+            sec.commands.forEach(com => {
+                commandsArray.push({...com, type: "COMMAND", 
+                    filterVar: [sec.sectionName, com.textName, com.textDefine].join(" ")})
+                i += 1
+            })
+        })
+        this.setState({
+            commandsArray: commandsArray,
+            headerIndices: headerIndices,
+        })
+    }
+
     onPressCommand = (input) => () => {
         this.props.navigation.navigate("History", {prevScreen: "Commands", input: input})
     }
 
     renderItem = ({item, index}) => {
-        return <CommandRow 
+        if (item.type === "HEADER") {
+            return <HeaderCommandRow 
                 {...item}
-                onPress={this.onPressCommand(item.textDefine)}
-                onLongPress={()=>{}}
             />
+        }
+        return <CommandRow 
+            {...item}
+            onPress={this.onPressCommand(item.textDefine)}
+            onLongPress={()=>{}}
+        />
     }
   
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.padding}>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={text => this.setState({ searchInput: text })}
+                        value={this.state.searchInput}
+                        placeholder="Search..."
+                        placeholderTextColor={InputTextColors.placeholder}
+                        autoCorrect={false}
+                        autoCapitalize='none'
+                        returnKeyType="search"
+                        blurOnSubmit={true}
+                        keyboardAppearance='dark'
+                        selectionColor={AppColors.cursorColor}
+                    />
+                </View>
                 <View style={styles.aligning}>
                     <FlatList
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
-                        data={this.props.commandsArray}
+                        // stickyHeaderIndices={this.state.headerIndices}
+                        data={
+                            this.state.searchInput === "" ? this.state.commandsArray:
+                            this.state.commandsArray.filter(
+                                item => {
+                                    if (item.type === "HEADER") {
+                                        return true
+                                    }
+                                    return item.filterVar.toLowerCase().includes(this.state.searchInput.toLowerCase())
+                                }
+                                )
+                            }
                     />
                 </View>
             </View>

@@ -28,11 +28,20 @@ const styles = StyleSheet.create({
     color: TextColors.textResult,
     fontSize: FontSizes.textResult,
   },
+  header: {
+      backgroundColor: AppColors.background,
+      padding: 10,
+      borderBottomWidth: 1,
+      borderColor: AppColors.rowSeparator,
+  },
+  headerText: {
+      color: TextColors.textResult,
+      fontSize: FontSizes.settingsHeader,
+  },
 });
 
 
-
-class CommandRow extends React.Component {
+export class CommandRow extends React.Component {
 
   render() {
     return (
@@ -51,4 +60,18 @@ CommandRow.propTypes = {
     onLongPress: PropTypes.func,
 }
 
-export default CommandRow
+
+export class HeaderCommandRow extends React.Component {
+
+  render() {
+    return (
+      <View style={styles.header}>
+          <Text style={styles.headerText}>{this.props.headerName}</Text>
+      </View>
+    )
+  }
+}
+
+HeaderCommandRow.propTypes = {
+  headerName: PropTypes.string,
+}
