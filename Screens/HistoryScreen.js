@@ -9,7 +9,7 @@ import { FontSizes } from '../Design/Fonts';
 import InputRow from '../Components/History/InputRow';
 import { text_evaluate } from '../MathBox/mathBox';
 
-import { setAnsIndex, addInputToHistory } from '../Redux/mainActions';
+import { setAnsIndex, addInputToHistory, clearHistory } from '../Redux/mainActions';
 import Animated from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
@@ -51,6 +51,7 @@ class HistoryScreen extends React.Component {
     }
 
     componentDidMount(){
+        this.props.clearHistory()
         this.props.navigation.addListener('focus', () => {
             if (this.props.route.params) {
                 let params = this.props.route.params
@@ -143,6 +144,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     setAnsIndex: setAnsIndex,
     addInputToHistory: addInputToHistory,
+    clearHistory: clearHistory,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryScreen)

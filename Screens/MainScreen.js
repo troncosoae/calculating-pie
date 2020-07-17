@@ -10,7 +10,7 @@ import BasicButtonsMatrix from '../Components/Main/BasicButtonsMatrix';
 import AdvancedButtonMatrix from '../Components/Main/AdvancedButtonMatrix';
 import { text_evaluate } from '../MathBox/mathBox';
 
-import { addInputToHistory, setAnsIndex } from '../Redux/mainActions';
+import { addInputToHistory, setAnsIndex, clearHistory } from '../Redux/mainActions';
 
 const styles = StyleSheet.create({
     container: {
@@ -67,6 +67,10 @@ class MainScreen extends React.Component {
         textInput: [],
         mathInput: [],
         cursorPosition: 0,
+    }
+
+    componentDidMount() {
+        this.props.clearHistory()
     }
 
     setCursorPosition = (index) => {
@@ -192,6 +196,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     addInputToHistory: addInputToHistory,
     setAnsIndex: setAnsIndex,
+    clearHistory: clearHistory,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)
