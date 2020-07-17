@@ -69,10 +69,6 @@ class MainScreen extends React.Component {
         cursorPosition: 0,
     }
 
-    componentDidMount() {
-        this.props.clearHistory()
-    }
-
     setCursorPosition = (index) => {
         this.setState({
             cursorPosition: index

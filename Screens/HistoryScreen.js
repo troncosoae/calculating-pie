@@ -51,7 +51,6 @@ class HistoryScreen extends React.Component {
     }
 
     componentDidMount(){
-        this.props.clearHistory()
         this.props.navigation.addListener('focus', () => {
             if (this.props.route.params) {
                 let params = this.props.route.params
