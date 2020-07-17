@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Tabs from './Tabs';
 import MainStack from './MainStack';
-import { addInputToHistory, setAnsIndex, clearHistory } from '../Redux/mainActions';
+import { clearHistory } from '../Redux/mainActions';
 import { setSettingsAngle } from '../Redux/settingsActions';
 
 
