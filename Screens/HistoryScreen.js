@@ -54,7 +54,6 @@ class HistoryScreen extends React.Component {
         this.props.navigation.addListener('focus', () => {
             if (this.props.route.params) {
                 let params = this.props.route.params
-                console.log(params)
                 if ("prevScreen" in params && params.prevScreen === "Commands"){
                     this.setState({
                         input: this.state.input + params.input

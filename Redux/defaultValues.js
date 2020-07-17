@@ -204,6 +204,6 @@ export const defaultCommandsArray = [
         {textName: "whether a value is prime", textDefine: "isPrime(x)", isDefault: true},
         {textName: "whether a value is zero", textDefine: "isZero(x)", isDefault: true},
     ]},
-    {sectionName: "User Functions", commands: [
-    ]},
+    // {sectionName: "User Functions", commands: [
+    // ]},
 ]

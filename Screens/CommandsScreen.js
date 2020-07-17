@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -51,6 +51,13 @@ class CommandsScreen extends React.Component {
     }
 
     componentDidMount() {
+        this.getCommands()
+        this.props.navigation.addListener('focus', () => {
+            this.getCommands()
+        })
+    }
+
+    getCommands() {
         let commandsArray = []
         let i = 0
         this.props.commandsArray.forEach(sec => {
@@ -102,10 +109,11 @@ class CommandsScreen extends React.Component {
                         selectionColor={AppColors.cursorColor}
                     />
                 </View>
-                <View style={styles.aligning}>
+                <KeyboardAvoidingView style={styles.aligning} behavior="height" keyboardVerticalOffset={65}>
                     <FlatList
                         renderItem={this.renderItem} 
                         keyExtractor={(item, index) => index.toString()}
+                        keyboardShouldPersistTaps="always"
                         data={
                             this.state.searchInput === "" ? this.state.commandsArray:
                             this.state.commandsArray.filter(
@@ -118,7 +126,7 @@ class CommandsScreen extends React.Component {
                                 )
                             }
                     />
-                </View>
+                </KeyboardAvoidingView>
             </View>
         );
     }

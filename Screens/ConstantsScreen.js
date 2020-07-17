@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -9,6 +9,8 @@ import ConstantRow from '../Components/Constants/ConstantRow';
 import { text_evaluate } from '../MathBox/mathBox';
 
 import { addInputToHistory } from '../Redux/mainActions';
+import { removeConstant } from '../Redux/constantActions';
+import { Title } from 'native-base';
 
 const styles = StyleSheet.create({
     container: {
@@ -55,7 +57,18 @@ class ConstantsScreen extends React.Component {
         return <ConstantRow 
             {...item}
             onPress={item.isDefault ? this.exportConstant(item.textSym, item.textName):this.exportConstant(item.textSym, item.textValue)}
-            onLongPress={()=>{}}
+            onLongPress={item.isDefault ? () => {}: () => {
+                Alert.alert("Remove Constant", "Are you sure?", [
+                    {
+                        text: "Cancel",
+                        style: "cancel"
+                    },
+                    { text: "Yes", onPress: () => {
+                        this.props.removeConstant(index)
+                        this.setState({})
+                    }}
+                ])
+            }}
             />
     }
   
@@ -83,7 +96,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    // setAnsIndex: setAnsIndex,
+    removeConstant: removeConstant,
     addInputToHistory: addInputToHistory,
 }
 

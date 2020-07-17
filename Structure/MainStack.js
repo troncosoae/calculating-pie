@@ -9,8 +9,9 @@ import TabNavigatorHeader from './TabNavigatorHeader';
 import HistoryScreen from '../Screens/HistoryScreen';
 import MainScreen from '../Screens/MainScreen';
 import ConstantsScreen from '../Screens/ConstantsScreen';
-import CommandsScreen from '../Screens/CommandsScreen';
 import AddConstantScreen from '../Screens/ConstantsSubScreens/AddConstantScreen';
+import CommandsScreen from '../Screens/CommandsScreen';
+import AddCommandScreen from '../Screens/CommandsSubScreens/AddCommandScreen';
 import SettingsScreen from '../Screens/SettingsScreen';
 import AboutScreen from '../Screens/SettingsSubScreens/AboutScreen';
 import AdvancedButtonsSelectScreen from '../Screens/SettingsSubScreens/AdvancedButtonsSelectScreen';
@@ -71,16 +72,16 @@ function MainStack() {
                 //         type='materialicons'
                 //         style={{paddingRight:20}}
                 //         color={AppColors.inactiveTintColor}
-                //         onPress={()=>{navigation.navigate("AddConstant")}}
+                //         onPress={()=>{navigation.navigate("AddCommand")}}
                 //     />
                 // ),
             })}
         />
         {/* <Stack.Screen 
-            name="AddConstant" 
-            component={AddConstantScreen} 
+            name="AddCommand" 
+            component={AddCommandScreen} 
             options={{ 
-                headerTitle: 'Add Constant',
+                headerTitle: 'Add Command',
             }}
         /> */}
         <Stack.Screen 

@@ -5,7 +5,8 @@ import { defaultCommandsArray, defaultConstantsArray, defaultButtonsArray } from
 import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE, CLEAR_HISTORY } from './mainActions'
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
 import { SET_SETTINGS_ANGLE } from './settingsActions'
-import { ADD_CONSTANT } from './constantActions'
+import { ADD_CONSTANT, REMOVE_CONSTANT } from './constantActions'
+import { ADD_COMMAND } from './commandActions'
 import { change_angle_type } from '../MathBox/mathBox'
 
 
@@ -79,6 +80,15 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
                     action.payload
                 ],
             }
+        case REMOVE_CONSTANT:
+            let x = state.constantsArray.splice(action.payload, 1)
+            
+            console.log(state.constantsArray)
+            console.log(x)
+            console.log(action.payload)
+            return {
+                ...state,
+            }
         default:
             return state;
     }
@@ -86,6 +96,16 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
 
 const commandsReducer = (state = {commandsArray: defaultCommandsArray}, action) => {
     switch(action.type) {
+        case ADD_COMMAND:
+            let length = state.commandsArray.length
+            let userCommands = state.commandsArray[length - 1].commands
+            userCommands.push(action.payload)
+            let newCommandsArray = state.commandsArray
+            newCommandsArray[length - 1].commands = userCommands
+            return {
+                ...state,
+                commandsArray: newCommandsArray,
+            }
         default:
             return state;
     }
