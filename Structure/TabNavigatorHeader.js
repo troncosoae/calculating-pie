@@ -56,13 +56,13 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                 />
             </View>
             <View style={[styles.flexEnd, styles.rowDirection]}>
-                <Icon 
+                {/* <Icon 
                     name='question'
                     style={styles.paddingIcons}
                     type='font-awesome'
                     color={iconColors.colorExtras}
                     onPress={()=>{console.log(state)}}
-                />
+                /> */}
                 <Icon 
                     name='pi-box'
                     style={styles.paddingIcons}
