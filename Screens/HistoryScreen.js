@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, Text } from 'react-native';
+import { PanGestureHandler } from 'react-native-gesture-handler'
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -9,6 +10,7 @@ import InputRow from '../Components/History/InputRow';
 import { text_evaluate } from '../MathBox/mathBox';
 
 import { setAnsIndex, addInputToHistory } from '../Redux/mainActions';
+import Animated from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,18 +48,20 @@ class HistoryScreen extends React.Component {
 
     state = {
         input: "",
-        showClear: false,
     }
 
     componentDidMount(){
         this.props.navigation.addListener('focus', () => {
-            let params = this.props.route.params
-            if (params.prevScreen === "Commands"){
-                this.setState({
-                    input: this.state.input + params.input
-                })
+            if (this.props.route.params) {
+                let params = this.props.route.params
+                console.log(params)
+                if ("prevScreen" in params && params.prevScreen === "Commands"){
+                    this.setState({
+                        input: this.state.input + params.input
+                    })
+                }
+                this.props.route.params = {}
             }
-            this.props.route.params = {}
         })
     }
 
@@ -103,23 +107,11 @@ class HistoryScreen extends React.Component {
                         inverted={true}
                         onMomentumScrollEnd={()=>{this.setState({waitingForStop: false})}}
                         keyboardShouldPersistTaps="always"
-                        // refreshing={false}
-                        // onRefresh={()=>{console.log("refreshed")}}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={false}
-                                onRefresh={()=>{
-                                    // this.setState({showClear: !this.state.showClear})
-                                    console.log("refreshed")
-                                }}
-                                tintColor='rgba(1, 1, 1, 0)'
-                             />}
                         data={[
                             ...this.props.inputsArray
                         ]}
                     />
                 </View>
-                {/* {this.state.showClear ? <Button title={"clear"}/>:<View /> } */}
                 <View style={styles.padding}>
                     <TextInput
                         style={styles.textInput}
