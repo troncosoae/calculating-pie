@@ -75,6 +75,7 @@ class HistoryScreen extends React.Component {
         let input = this.state.input
         if (input !== "") {
             let result = text_evaluate(input, this.props.parser)
+            // console.log(this.props.parser.scope)
             this.props.addInputToHistory(input, result)
             this.setState({ input: ""})
             this.refs.FlatList.scrollToOffset({ animated: true, offset: 0 })
