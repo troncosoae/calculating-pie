@@ -8,22 +8,24 @@ export function text_convert(input) {
     return input
 }
 
+const allowed_types = ['Unit', 'Complex', 'Matrix']
+
 export function text_evaluate(input, parser) {
-    // evalutates text
-    console.log(input)
+    // console.log(input)
     let output = ""
     try {
+        // console.log(parser)
         output = parser.evaluate(input)
-        // console.log(typeof output)
-        // console.log(typeOf(output))
         // console.log(output)
+        // console.log(output.toString())
+        // console.log(typeOf(output))
         if (typeof output === 'number') {
             parser.evaluate("ans=" + output.toString())
-        } else if (typeOf(output) === 'Unit' || typeOf(output) === 'Complex') {
+        } else if (allowed_types.includes(typeOf(output))) {
             parser.evaluate("ans=" + output.toString())
         }
+        // console.log(parser.scope)
         output = math.format(output, {precision: 14})
-        console.log(parser.scope)
     } catch (error) {
         if (error instanceof TypeError) {
             try {
