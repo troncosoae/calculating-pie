@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "calculating pie",
-    "slug": "calculating-pie",
+    "name": "pie calculator",
+    "slug": "pie-calculator",
     "platforms": [
       "ios",
       "android"
@@ -9,6 +9,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "sdkVersion": "37.0.0",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -21,7 +22,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.calculator.pie"
     }
   }
 }
