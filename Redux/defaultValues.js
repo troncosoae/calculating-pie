@@ -66,8 +66,6 @@ export const defaultConstantsArray = [
 export const defaultCommandsArray = [
     {sectionName: "General", commands: [
         {textName: "Help on command", textDefine: "help(COMMAND)", isDefault: true},
-        {textName: "Define Function", textDefine: "f(x,y)=2x+y", isDefault: true},
-        {textName: "Define Matrix", textDefine: "A=[[1,2],[3,4]]", isDefault: true},
     ]},
     {sectionName: "Algebra", commands: [
         {textName: "Solve linear equation (forward)", textDefine: "lsolve(A,b)", isDefault: true},
@@ -204,4 +202,9 @@ export const defaultCommandsArray = [
         {textName: "whether a value is prime", textDefine: "isPrime(x)", isDefault: true},
         {textName: "whether a value is zero", textDefine: "isZero(x)", isDefault: true},
     ]},
+]
+
+export const defaultUserCommandsArray = [
+    {textName: "Define Function", textDefine: "f(x,y)=2x+y", isDefault: true},
+    {textName: "Define Matrix", textDefine: "A=[[1,2],[3,4]]", isDefault: true},
 ]

@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 import { create, all } from 'mathjs'
 
-import { defaultCommandsArray, defaultConstantsArray, defaultButtonsArray } from './defaultValues'
+import { defaultCommandsArray, defaultConstantsArray, defaultButtonsArray, defaultUserCommandsArray } from './defaultValues'
 import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE, CLEAR_HISTORY } from './mainActions'
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
 import { SET_SETTINGS_ANGLE } from './settingsActions'
@@ -76,8 +76,8 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
             return {
                 ...state,
                 constantsArray: [
+                    action.payload,
                     ...state.constantsArray,
-                    action.payload
                 ],
             }
         case REMOVE_CONSTANT:
@@ -94,25 +94,12 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
     }
 }
 
-const defaultUserCommandsArray = []
-
 const commandsReducer = (state = {commandsArray: defaultCommandsArray, userCommandsArray: defaultUserCommandsArray}, action) => {
     switch(action.type) {
-        // case ADD_COMMAND:
-        //     let length = state.commandsArray.length
-        //     let userCommands = state.commandsArray[length - 1].commands
-        //     userCommands.push(action.payload)
-        //     let newCommandsArray = state.commandsArray
-        //     newCommandsArray[length - 1].commands = userCommands
-        //     return {
-        //         ...state,
-        //         commandsArray: newCommandsArray,
-        //     }
         case ADD_COMMAND:
             console.log(state.userCommandsArray)
             return {
                 ...state,
-                commandsArray: defaultCommandsArray,
                 userCommandsArray: [
                     ...state.userCommandsArray,
                     action.payload

@@ -59,6 +59,11 @@ class CommandsScreen extends React.Component {
 
     getCommands() {
         let commandsArray = []
+        commandsArray.push({headerName: "User Commands", type: "HEADER"})
+        this.props.userCommandsArray.forEach(com => {
+            commandsArray.push({...com, type: "COMMAND", 
+            filterVar: ["User Commands", com.textName, com.textDefine].join(" ")})
+        })
         let i = 0
         this.props.commandsArray.forEach(sec => {
             commandsArray.push({headerName: sec.sectionName, type: "HEADER"})
@@ -69,11 +74,6 @@ class CommandsScreen extends React.Component {
                 i += 1
             })
         })
-        commandsArray.push({headerName: "User Commands", type: "HEADER"})
-        this.props.userCommandsArray.forEach(com => {
-            commandsArray.push({...com, type: "COMMAND", 
-            filterVar: ["User Commands", com.textName, com.textDefine].join(" ")})
-        })
         this.setState({
             commandsArray: commandsArray,
         })
@@ -81,6 +81,10 @@ class CommandsScreen extends React.Component {
 
     onPressCommand = (input) => () => {
         this.props.navigation.navigate("History", {prevScreen: "Commands", input: input})
+    }
+
+    onLongPressCommand = (index) => () => {
+        console.log(index - 1)
     }
 
     renderItem = ({item, index}) => {
@@ -92,7 +96,7 @@ class CommandsScreen extends React.Component {
         return <CommandRow 
             {...item}
             onPress={this.onPressCommand(item.textDefine)}
-            onLongPress={()=>{}}
+            onLongPress={()=>{this.onLongPressCommand(index)}}
         />
     }
   
