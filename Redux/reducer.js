@@ -6,7 +6,7 @@ import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE, CLEAR_HISTORY } fr
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
 import { SET_SETTINGS_ANGLE } from './settingsActions'
 import { ADD_CONSTANT, REMOVE_CONSTANT } from './constantActions'
-import { ADD_COMMAND } from './commandActions'
+import { ADD_COMMAND, REMOVE_COMMAND } from './commandActions'
 import { change_angle_type } from '../MathBox/mathBox'
 
 
@@ -104,6 +104,12 @@ const commandsReducer = (state = {commandsArray: defaultCommandsArray, userComma
                     ...state.userCommandsArray,
                     action.payload
                 ]
+            }
+        case REMOVE_COMMAND:
+            let x = state.userCommandsArray.splice(action.payload, 1)
+            console.log(state.userCommandsArray)
+            return {
+                ...state,
             }
         default:
             return state;

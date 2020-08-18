@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pie calculator",
-    "slug": "pie-calculator",
+    "name": "eulers calculator",
+    "slug": "eulers-calculator",
     "platforms": [
       "ios",
       "android"
@@ -23,7 +23,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.calculator.pie"
+      "bundleIdentifier": "com.calculator.eulers"
     }
   }
 }
