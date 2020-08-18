@@ -66,24 +66,24 @@ function MainStack() {
             component={CommandsScreen} 
             options={({navigation}) => ({
                 headerTitle: 'Commands',
-                // headerRight: () => (
-                //     <Icon 
-                //         name='library-add'
-                //         type='materialicons'
-                //         style={{paddingRight:20}}
-                //         color={AppColors.inactiveTintColor}
-                //         onPress={()=>{navigation.navigate("AddCommand")}}
-                //     />
-                // ),
+                headerRight: () => (
+                    <Icon 
+                        name='library-add'
+                        type='materialicons'
+                        style={{paddingRight:20}}
+                        color={AppColors.inactiveTintColor}
+                        onPress={()=>{navigation.navigate("AddCommand")}}
+                    />
+                ),
             })}
         />
-        {/* <Stack.Screen 
+        <Stack.Screen 
             name="AddCommand" 
             component={AddCommandScreen} 
             options={{ 
                 headerTitle: 'Add Command',
             }}
-        /> */}
+        />
         <Stack.Screen 
             name="Settings" 
             component={SettingsScreen} 

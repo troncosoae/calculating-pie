@@ -94,17 +94,29 @@ const constantsReducer = (state = {constantsArray: defaultConstantsArray}, actio
     }
 }
 
-const commandsReducer = (state = {commandsArray: defaultCommandsArray}, action) => {
+const defaultUserCommandsArray = []
+
+const commandsReducer = (state = {commandsArray: defaultCommandsArray, userCommandsArray: defaultUserCommandsArray}, action) => {
     switch(action.type) {
+        // case ADD_COMMAND:
+        //     let length = state.commandsArray.length
+        //     let userCommands = state.commandsArray[length - 1].commands
+        //     userCommands.push(action.payload)
+        //     let newCommandsArray = state.commandsArray
+        //     newCommandsArray[length - 1].commands = userCommands
+        //     return {
+        //         ...state,
+        //         commandsArray: newCommandsArray,
+        //     }
         case ADD_COMMAND:
-            let length = state.commandsArray.length
-            let userCommands = state.commandsArray[length - 1].commands
-            userCommands.push(action.payload)
-            let newCommandsArray = state.commandsArray
-            newCommandsArray[length - 1].commands = userCommands
+            console.log(state.userCommandsArray)
             return {
                 ...state,
-                commandsArray: newCommandsArray,
+                commandsArray: defaultCommandsArray,
+                userCommandsArray: [
+                    ...state.userCommandsArray,
+                    action.payload
+                ]
             }
         default:
             return state;

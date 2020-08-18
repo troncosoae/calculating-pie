@@ -69,6 +69,11 @@ class CommandsScreen extends React.Component {
                 i += 1
             })
         })
+        commandsArray.push({headerName: "User Commands", type: "HEADER"})
+        this.props.userCommandsArray.forEach(com => {
+            commandsArray.push({...com, type: "COMMAND", 
+            filterVar: ["User Commands", com.textName, com.textDefine].join(" ")})
+        })
         this.setState({
             commandsArray: commandsArray,
         })
@@ -138,6 +143,7 @@ const mapStateToProps = state => ({
     // ansIndex: state.main.ansIndex,
     parser: state.main.parser,
     commandsArray: state.commands.commandsArray,
+    userCommandsArray: state.commands.userCommandsArray,
 })
 
 const mapDispatchToProps = {
