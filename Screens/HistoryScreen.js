@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, Text, SafeAreaView } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -98,7 +98,7 @@ class HistoryScreen extends React.Component {
   
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
                         ref="FlatList"
@@ -117,7 +117,7 @@ class HistoryScreen extends React.Component {
                         style={styles.textInput}
                         onChangeText={text => this.setState({ input: text })}
                         value={this.state.input}
-                        placeholder="Advanced Input: "
+                        placeholder="Input..."
                         placeholderTextColor={InputTextColors.placeholder}
                         autoCorrect={false}
                         autoCapitalize='none'
@@ -129,7 +129,7 @@ class HistoryScreen extends React.Component {
                     />
                 </View>
                 <KeyboardSpacer />
-            </View>
+            </SafeAreaView>
         );
     }
 }

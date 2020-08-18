@@ -48,9 +48,12 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     }}
                 />
                 <Icon 
-                    name='ios-list-box'
+                    // name='ios-list-box'
+                    // type='ionicon'
+                    name='codesquare'
+                    type='antdesign'
+                    size={23}
                     style={styles.paddingIcons}
-                    type='ionicon'
                     color={state.index == 1 ? iconColors.colorOn : iconColors.colorNeutral}
                     onPress={()=>{navigation.navigate("History") }}
                 />

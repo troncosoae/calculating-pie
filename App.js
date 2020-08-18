@@ -11,10 +11,10 @@ import LoadingView from './Structure/LoadingView'
 export default function App() {
   return (
     <Provider store={store}>
-    <PersistGate loading={<LoadingView />} persistor={persistor}>
-      <StatusBar barStyle={'light-content'} />
-      <MountWrapper />
-    </PersistGate>
+      <PersistGate loading={<LoadingView />} persistor={persistor}>
+        <StatusBar barStyle={'light-content'} />
+          <MountWrapper />
+      </PersistGate>
     </Provider>
   );
 }
