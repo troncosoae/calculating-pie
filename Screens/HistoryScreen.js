@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl, SafeAreaView } from 'react-native';
 import { PanGestureHandler } from 'react-native-gesture-handler'
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -98,7 +98,7 @@ class HistoryScreen extends React.Component {
   
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
                         ref="FlatList"
@@ -107,9 +107,13 @@ class HistoryScreen extends React.Component {
                         inverted={true}
                         onMomentumScrollEnd={()=>{this.setState({waitingForStop: false})}}
                         keyboardShouldPersistTaps="always"
-                        data={[
-                            ...this.props.inputsArray
-                        ]}
+                        data={this.props.inputsArray}
+                        // refreshControl={
+                        //     <RefreshControl 
+                        //         refreshing={false} 
+                        //         onRefresh={() => {console.log("refreshing")}} 
+                        //     />
+                        // }
                     />
                 </View>
                 <View style={styles.padding}>
@@ -117,7 +121,7 @@ class HistoryScreen extends React.Component {
                         style={styles.textInput}
                         onChangeText={text => this.setState({ input: text })}
                         value={this.state.input}
-                        placeholder="Advanced Input: "
+                        placeholder="Input..."
                         placeholderTextColor={InputTextColors.placeholder}
                         autoCorrect={false}
                         autoCapitalize='none'
@@ -129,7 +133,7 @@ class HistoryScreen extends React.Component {
                     />
                 </View>
                 <KeyboardSpacer />
-            </View>
+            </SafeAreaView>
         );
     }
 }

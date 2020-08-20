@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, FlatList, Button, TextInput, RefreshControl, KeyboardAvoidingView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
@@ -9,6 +9,7 @@ import { CommandRow, HeaderCommandRow } from '../Components/Commands/CommandRow'
 import { text_evaluate } from '../MathBox/mathBox';
 
 import { addInputToHistory } from '../Redux/mainActions';
+import { removeCommand } from '../Redux/commandActions';
 
 const styles = StyleSheet.create({
     container: {
@@ -59,6 +60,11 @@ class CommandsScreen extends React.Component {
 
     getCommands() {
         let commandsArray = []
+        commandsArray.push({headerName: "User Commands", type: "HEADER"})
+        this.props.userCommandsArray.forEach(com => {
+            commandsArray.push({...com, type: "COMMAND", 
+            filterVar: ["User Commands", com.textName, com.textDefine].join(" ")})
+        })
         let i = 0
         this.props.commandsArray.forEach(sec => {
             commandsArray.push({headerName: sec.sectionName, type: "HEADER"})
@@ -78,6 +84,11 @@ class CommandsScreen extends React.Component {
         this.props.navigation.navigate("History", {prevScreen: "Commands", input: input})
     }
 
+    onLongPressCommand = ({item, index}) => () => {
+        console.log(index - 1)
+        // this.props.removeCommand(index - 1)
+    }
+
     renderItem = ({item, index}) => {
         if (item.type === "HEADER") {
             return <HeaderCommandRow 
@@ -87,7 +98,24 @@ class CommandsScreen extends React.Component {
         return <CommandRow 
             {...item}
             onPress={this.onPressCommand(item.textDefine)}
-            onLongPress={()=>{}}
+            onLongPress={
+                item.isDefault ? () => {}: () => {
+                    Alert.alert("Remove Command", "Are you sure?", [
+                        {
+                            text: "Cancel",
+                            style: "cancel"
+                        },
+                        { text: "Yes", onPress: () => {
+                            this.props.removeCommand(index-1)
+                            let newCommandsArray = this.state.commandsArray
+                            newCommandsArray.splice(index, 1)
+                            this.setState({
+                                commandsArray: newCommandsArray
+                            })
+                        }}
+                    ])
+                }
+            }
         />
     }
   
@@ -138,11 +166,12 @@ const mapStateToProps = state => ({
     // ansIndex: state.main.ansIndex,
     parser: state.main.parser,
     commandsArray: state.commands.commandsArray,
+    userCommandsArray: state.commands.userCommandsArray,
 })
 
 const mapDispatchToProps = {
-    // setAnsIndex: setAnsIndex,
     addInputToHistory: addInputToHistory,
+    removeCommand: removeCommand,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommandsScreen)

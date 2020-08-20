@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Text, SafeAreaView, RefreshControl, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import { AppColors, TextColors, Colors } from '../Design/Colors';
@@ -141,13 +141,17 @@ class MainScreen extends React.Component {
         }
     }
 
-    renderItem = ({item, index}) => {
+    // renderItem = ({item, index}) => {
+    //     return (<InputRow {...item} isAns={index === this.props.ansIndex} onPress={this.setAnsIndex(index)}/>)
+    // }
+
+    renderItem = ({index, item}) => {
         return (<InputRow {...item} isAns={index === this.props.ansIndex} onPress={this.setAnsIndex(index)}/>)
     }
   
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
                         ref="FlatList"
@@ -155,6 +159,12 @@ class MainScreen extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}
                         data={this.props.inputsArray}
+                        // refreshControl={
+                        //     <RefreshControl 
+                        //         refreshing={false} 
+                        //         onRefresh={() => {console.log("refreshing")}} 
+                        //     />
+                        // }
                     />
                 </View>
                 <CursorInput style={styles.cursorInputStyle} textStyle={styles.cursorInputTextStyle}
@@ -176,7 +186,7 @@ class MainScreen extends React.Component {
                     onSubmit={this.onSubmit}
                     getAns={this.getAns}
                 />
-            </View>
+            </SafeAreaView>
         );
     }
 }

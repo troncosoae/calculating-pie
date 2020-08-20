@@ -74,6 +74,7 @@ class SettingsScreen extends React.Component {
 
   setAngleType(angleType) {
     console.log(this.state.angleType)
+    console.log(this.props.parser)
     this.props.setAngleType(angleType)
     this.props.setSettingsAngle(angleType)
     this.setState({
@@ -111,7 +112,8 @@ class SettingsScreen extends React.Component {
 
 // redux
 const mapStateToProps = state => ({
-  angleType: state.settings.angleType
+  angleType: state.settings.angleType,
+  parser: state.main.parser,
 })
 
 const mapDispatchToProps = {
