@@ -37,7 +37,7 @@ class ConstantRow extends React.Component {
   render() {
     return (
       <TouchableOpacity style={styles.container} onLongPress={this.props.onLongPress} onPress={this.props.onPress}>
-        <Text style={[styles.textName]}>{this.props.textSym}  ({this.props.textName})</Text>
+        <Text style={[styles.textName]}>{this.props.textName}  ({this.props.textSym})</Text>
         <Text style={[styles.textValue]}> = {this.props.textValue}</Text>
       </TouchableOpacity>
     )
