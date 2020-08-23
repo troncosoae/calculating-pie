@@ -1,4 +1,15 @@
 # calculating-pie
 calculator app v2
 
-name in app store is eulers-calculator
+The name in the App Store is Eulers Calculator
+
+# Packages used
+
+react
+react-native
+expo
+mathjs
+
+# License
+
+calculating-pie is [MIT licensed](./LICENSE).
