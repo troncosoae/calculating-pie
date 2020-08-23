@@ -6,8 +6,11 @@ The name in the App Store is Eulers Calculator
 # Packages used
 
 react
+
 react-native
+
 expo
+
 mathjs
 
 # License
