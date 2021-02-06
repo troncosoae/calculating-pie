@@ -21,6 +21,8 @@ Note: the icon was created based on the react native vector icon [calculator-var
 
 * Save past inputs
 
+* feedback (somehow)
+
 # License
 
 calculating-pie is [MIT licensed](./LICENSE).
