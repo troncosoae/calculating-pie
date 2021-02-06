@@ -6,7 +6,7 @@ export const Symbols = {
   sub:  {sym: '-', txt: '-', math: '-'},
   equal:  {sym: '=', txt: '=', math: '='},
   ans:  {sym: 'ans', txt: 'ans', math: 'ans'},
-  exp: {sym: '\xD710^', txt: '\xD710^', math: 'e'},
+  exp: {sym: 'exp', txt: 'e', math: 'e'},
   sqrt: {sym: '^{2}\u221A', txt: '\u221A(', math: 'sqrt('},
   square: {sym: 'x^{2}', txt: '^2', math: '^2'},
   pwr: {sym: 'a^{x}', txt: '^', math: '^', shift: 'logyx'},
