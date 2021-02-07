@@ -125,6 +125,5 @@ export function change_angle_type(angle_type, parser) {
     let new_parser = math.parser()
     new_parser.scope = parser.scope
 
-
     return new_parser
 }

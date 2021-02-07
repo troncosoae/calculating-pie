@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Alert, SectionList, ScrollView } from 'react-native';
+import { View, StyleSheet, Alert, SectionList, ScrollView, Linking } from 'react-native';
 import { List, Toast, Content, Text, Button, Container, Root } from 'native-base';
 import { connect } from 'react-redux';
 
@@ -67,8 +67,11 @@ class SettingsScreen extends React.Component {
         this.props.clearHistory()
         this.props.navigation.goBack()
       }}},
-      {type: HEADER, params: {text: "About"}},
+      {type: HEADER, params: {text: "Information"}},
       {type: NAVIGATE_ITEM, params: {text: "About", navigate: this.props.navigation.navigate, screenName: "About"}},
+      {type: PRESS_ITEM, params: {text: "Write Review", onPress:() => {
+        Linking.openURL('https://apps.apple.com/cl/app/eulers-calculator/id1528434983#?platform=iphone')
+      }}},
     ],
   }
 

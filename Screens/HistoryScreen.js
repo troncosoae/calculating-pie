@@ -116,6 +116,7 @@ class HistoryScreen extends React.Component {
                         // }
                     />
                 </View>
+                
                 <View style={styles.padding}>
                     <TextInput
                         style={styles.textInput}

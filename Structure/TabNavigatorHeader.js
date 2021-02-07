@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     container: {
       flexDirection: 'row',
       backgroundColor: AppColors.navigationHeaderBackground,
-      paddingTop: Constants.statusBarHeight + 5,
+      paddingTop: 5,
     },
     rowDirection: {
       flexDirection: 'row',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
 function TabNavigatorHeader({ state, descriptors, navigation, position }) {
     return (
-        <View style={[styles.container, styles.padding]}>
+        <View style={styles.container}>
             <View style={[styles.flexStart, styles.rowDirection]}>
                 <Icon 
                     name='calculator-variant'
