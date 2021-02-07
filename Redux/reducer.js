@@ -2,16 +2,15 @@ import {combineReducers} from 'redux'
 import { create, all } from 'mathjs'
 
 import { defaultCommandsArray, defaultConstantsArray, defaultButtonsArray, defaultUserCommandsArray } from './defaultValues'
-import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE, CLEAR_HISTORY } from './mainActions'
+import { ADD_INPUT_TO_HISTORY, SET_ANS_INDEX, SET_ANGLE_TYPE, CLEAR_HISTORY, REMAKE_PARSER } from './mainActions'
 import { NEW_BUTTON_ARRAY } from './buttonsActions'
 import { SET_SETTINGS_ANGLE } from './settingsActions'
 import { ADD_CONSTANT, REMOVE_CONSTANT } from './constantActions'
 import { ADD_COMMAND, REMOVE_COMMAND } from './commandActions'
-import { change_angle_type } from '../MathBox/mathBox'
+import { change_angle_type, text_evaluate } from '../MathBox/mathBox'
 
 
-const math = create(all, {
-})
+const math = create(all, {})
 
 
 const mainReducer = (state = {ansIndex: 0, parser: math.parser(), inputsArray: []}, action) => {
@@ -40,6 +39,15 @@ const mainReducer = (state = {ansIndex: 0, parser: math.parser(), inputsArray: [
                 ...state,
                 inputsArray: [],
                 parser: math.parser(),
+            }
+        case REMAKE_PARSER:
+            let new_parser = change_angle_type(action.payload, state.parser)
+            console.log(action.payload)
+            state.inputsArray.forEach(input => {
+                console.log(input)
+            })
+            return {
+                ...state,
             }
         default:
             return state

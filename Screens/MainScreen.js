@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, SafeAreaView, RefreshControl, Button } from 'react-native';
 import { connect } from 'react-redux';
+import Rate from 'react-native-rate';
 
 import { AppColors, TextColors, Colors } from '../Design/Colors';
 import { FontSizes } from '../Design/Fonts';
@@ -10,7 +11,7 @@ import BasicButtonsMatrix from '../Components/Main/BasicButtonsMatrix';
 import AdvancedButtonMatrix from '../Components/Main/AdvancedButtonMatrix';
 import { text_evaluate } from '../MathBox/mathBox';
 
-import { addInputToHistory, setAnsIndex, clearHistory } from '../Redux/mainActions';
+import { addInputToHistory, setAnsIndex, clearHistory, remakeParser } from '../Redux/mainActions';
 
 const styles = StyleSheet.create({
     container: {
@@ -106,6 +107,16 @@ class MainScreen extends React.Component {
         this.setState({
             cursorPosition: this.state.cursorPosition - 1,
         })
+        // const options = {
+        //     AppleAppID:"2193813192",
+        //     preferInApp:true,
+        // }          
+        // Rate.rate(options, success=>{
+        //     if (success) {
+        //       // this technically only tells us if the user successfully went to the Review Page. Whether they actually did anything, we do not know.
+        //       this.setState({rated:true})
+        //     }
+        // })
     }
 
     onSubmit = () => {
@@ -124,10 +135,13 @@ class MainScreen extends React.Component {
             })
             this.refs.FlatList.scrollToOffset({ animated: true, offset: 0 })
         }
+        console.log(this.props.mainState)
+        // this.props.remakeParser(this.props.angleType)
     }
 
-    setAnsIndex = (index) => () => {
-        let ansText = text_evaluate("ans=" + this.props.inputsArray[index].textResult, this.props.parser)
+    setAnsIndex = index => () => {
+        let ansText = text_evaluate(
+            "ans=" + this.props.inputsArray[index].textResult, this.props.parser)
         this.props.setAnsIndex(index)
         this.setState({
             ansText: ansText,
@@ -141,11 +155,7 @@ class MainScreen extends React.Component {
         }
     }
 
-    // renderItem = ({item, index}) => {
-    //     return (<InputRow {...item} isAns={index === this.props.ansIndex} onPress={this.setAnsIndex(index)}/>)
-    // }
-
-    renderItem = ({index, item}) => {
+    renderItem = ({item, index}) => {
         return (<InputRow {...item} isAns={index === this.props.ansIndex} onPress={this.setAnsIndex(index)}/>)
     }
   
@@ -159,12 +169,6 @@ class MainScreen extends React.Component {
                         keyExtractor={(item, index) => index.toString()}
                         inverted={true}
                         data={this.props.inputsArray}
-                        // refreshControl={
-                        //     <RefreshControl 
-                        //         refreshing={false} 
-                        //         onRefresh={() => {console.log("refreshing")}} 
-                        //     />
-                        // }
                     />
                 </View>
                 <CursorInput style={styles.cursorInputStyle} textStyle={styles.cursorInputTextStyle}
@@ -197,12 +201,15 @@ const mapStateToProps = state => ({
     parser: state.main.parser,
     ansIndex: state.main.ansIndex,
     advancedButtons: state.buttons.buttonsArray,
+    angleType: state.settings.angleType,
+    mainState: state.main,
 })
 
 const mapDispatchToProps = {
     addInputToHistory: addInputToHistory,
     setAnsIndex: setAnsIndex,
     clearHistory: clearHistory,
+    remakeParser: remakeParser,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen)

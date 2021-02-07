@@ -31,37 +31,23 @@ class AboutScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                {/* <Text style={styles.titles}>
-                    About Calculator-Nut
+                <Text style={styles.titles}>
+                    About Eulers Calculator
                 </Text>
                 <Text style={styles.body}>
-                    {"This app was created because, as a team, we think it doesn't make sense to have such a powerfull computer in our hands all day and not have access to a good calculator for free. This one of course doesn't come close to meeting the standards either, but we are giving it our best to get as close as possible. "}
+                    {"Calculator app meant to have all the functions a scientific calculator has and more. Define variables and functions. Use units and universal constants."}
                 </Text>
                 <Text style={styles.titles}>
-                    Plan for the future
+                    Feedback
                 </Text>
                 <Text style={styles.body}>
-                    {"In the future we plan on expanding the functionalities of the advanced section, such as a choice between rad/deg, derivatives and integrals. We also intend to include a cursor in the main section and a few choices of colors. \n"}
-                    {"Unfortunately, we will have to restrict some of these functionalities to premium users (in app purchases) because we intend to recover the initial investment. "}
+                    {"Comments and suggestions are always welcome. Please add a review!"}
                 </Text>
-                <Text style={styles.titles}>
-                    Finally...
-                </Text>
-                <Text style={styles.body}>
-                    {"If you have any opinions, suggestions or have detected a bug somewhere please post a comment. Like we said, our interest is to improve this calculator so that one day we actually can meet the expected standards. "}
-                </Text> */}
-                
-                <Text style={styles.titles}>
-                    About Calculating-Pie
-                </Text>
-                <Text style={styles.body}>
-                    {"App created to make good use of the mathjs library."}
-                    </Text>
                 <Text style={styles.titles}>
                     To explore new functions...
                 </Text>
                 <Text style={styles.body}>
-                    {"Go to https://mathjs.org/. "}
+                    {"Most functionalities of the app rely on the https://mathjs.org/ library. For more functionalities or information, check it out!"}
                 </Text>
             </View>
         )
