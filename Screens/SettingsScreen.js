@@ -70,7 +70,7 @@ class SettingsScreen extends React.Component {
       {type: HEADER, params: {text: "Information"}},
       {type: NAVIGATE_ITEM, params: {text: "About", navigate: this.props.navigation.navigate, screenName: "About"}},
       {type: PRESS_ITEM, params: {text: "Write Review", onPress:() => {
-        Linking.openURL('https://apps.apple.com/cl/app/eulers-calculator/id1528434983#?platform=iphone')
+        Linking.openURL('https://play.google.com/store')
       }}},
     ],
   }

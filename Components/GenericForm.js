@@ -73,7 +73,8 @@ class GenericForm extends React.Component {
 
     render() {
         return (
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            // <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            <View style={styles.container}>
                 {map(Object.keys(this.state), (key) => (
                     <View style={styles.inputContainer}>
                         <TextInput
@@ -89,13 +90,16 @@ class GenericForm extends React.Component {
                         />
                     </View>
                 ))}
-                <Button 
+                <View style={{padding:10}}>
+                <Button
                     title="Submit" 
                     onPress={this.props.handleSubmit(this.state)}
                     color={AppColors.linkButtonColor} 
                     disabled={!this.validInput()}
                 />
-            </KeyboardAvoidingView>
+                </View>
+                {/* </KeyboardAvoidingView> */}
+            </View>
         )
     }
 }

@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       backgroundColor: AppColors.navigationHeaderBackground,
       paddingTop: 5,
+      paddingBottom: 5,
     },
     rowDirection: {
       flexDirection: 'row',
@@ -18,8 +19,7 @@ const styles = StyleSheet.create({
         paddingVertical: 2.5,
     },
     paddingIcons: {
-        paddingVertical: 5,
-        paddingHorizontal: 10,
+        padding: 5,
     },
     flexStart: {
         flex: 1,
@@ -37,9 +37,10 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
     return (
         <View style={styles.container}>
             <View style={[styles.flexStart, styles.rowDirection]}>
+                <View style={styles.paddingIcons}>
                 <Icon 
                     name='calculator-variant'
-                    style={styles.paddingIcons}
+                    // style={styles.paddingIcons}
                     type='material-community'
                     color={state.index == 0 ? iconColors.colorOn : iconColors.colorNeutral}
                     onPress={()=>{
@@ -47,16 +48,19 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                         navigation.navigate("Main")
                     }}
                 />
+                </View>
+                <View style={styles.paddingIcons}>
                 <Icon 
                     // name='ios-list-box'
                     // type='ionicon'
                     name='codesquare'
                     type='antdesign'
                     size={23}
-                    style={styles.paddingIcons}
+                    // style={styles.paddingIcons}
                     color={state.index == 1 ? iconColors.colorOn : iconColors.colorNeutral}
                     onPress={()=>{navigation.navigate("History") }}
                 />
+                </View>
             </View>
             <View style={[styles.flexEnd, styles.rowDirection]}>
                 {/* <Icon 
@@ -66,27 +70,33 @@ function TabNavigatorHeader({ state, descriptors, navigation, position }) {
                     color={iconColors.colorExtras}
                     onPress={()=>{console.log(state)}}
                 /> */}
+                <View style={styles.paddingIcons}>
                 <Icon 
                     name='pi-box'
-                    style={styles.paddingIcons}
+                    // style={styles.paddingIcons}
                     type='material-community'
                     color={iconColors.colorExtras}
                     onPress={()=>{navigation.navigate("Constants")}}
                 />
+                </View>
+                <View style={styles.paddingIcons}>
                 <Icon 
                     name='book-open-page-variant'
-                    style={styles.paddingIcons}
+                    // style={styles.paddingIcons}
                     type='material-community'
                     color={iconColors.colorExtras}
                     onPress={()=>{navigation.navigate("Commands")}}
                 />
+                </View>
+                <View style={styles.paddingIcons}>
                 <Icon 
                     name='settings'
-                    style={styles.paddingIcons}
+                    // style={styles.paddingIcons}
                     type='material-icons'
                     color={iconColors.colorExtras}
                     onPress={()=>{navigation.navigate("Settings")}}
                 />
+                </View>
             </View>
         </View>
     )

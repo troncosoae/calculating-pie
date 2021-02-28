@@ -98,7 +98,8 @@ class HistoryScreen extends React.Component {
   
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            // <SafeAreaView style={styles.container}>
+            <View style={styles.container}>
                 <View style={styles.aligning}>
                     <FlatList
                         ref="FlatList"
@@ -133,8 +134,9 @@ class HistoryScreen extends React.Component {
                         selectionColor={AppColors.cursorColor}
                     />
                 </View>
-                <KeyboardSpacer />
-            </SafeAreaView>
+                {/* <KeyboardSpacer /> */}
+            </View>
+            // </SafeAreaView>
         );
     }
 }

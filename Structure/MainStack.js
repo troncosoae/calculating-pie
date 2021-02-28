@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, Button} from 'react-native'
+import {Text, Button, View} from 'react-native'
 import { Icon } from 'react-native-elements';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -44,13 +44,15 @@ function MainStack() {
             options={({navigation}) => ({
                 headerTitle: 'Constants',
                 headerRight: () => (
+                    <View style={{paddingRight:20}}>
                     <Icon 
                         name='library-add'
                         type='materialicons'
-                        style={{paddingRight:20}}
+                        // style={{paddingRight:20}}
                         color={AppColors.inactiveTintColor}
                         onPress={()=>{navigation.navigate("AddConstant")}}
                     />
+                    </View>
                 ),
             })}
         />
@@ -67,13 +69,15 @@ function MainStack() {
             options={({navigation}) => ({
                 headerTitle: 'Commands',
                 headerRight: () => (
+                    <View style={{paddingRight:20}}>
                     <Icon 
                         name='library-add'
                         type='materialicons'
-                        style={{paddingRight:20}}
+                        // style={{paddingRight:20}}
                         color={AppColors.inactiveTintColor}
                         onPress={()=>{navigation.navigate("AddCommand")}}
                     />
+                    </View>
                 ),
             })}
         />
